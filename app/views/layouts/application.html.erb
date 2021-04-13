@@ -10,10 +10,25 @@
   </head>
 
   <body>
-    <div class="footer-fixed">
+    <div>
       <%= render "layouts/header" %>
       <%#<%= render "layouts/flash" %>
-      <%= yield %>
+      <div class="container">
+        <div class="row">
+        <div class="clearfix"></div>
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="sidebar">
+            <li class="list-unstyled"><%= link_to "掲示板", "" %></li>
+            <li class="list-unstyled"><%= link_to "タスク", "" %></li>
+            <li class="list-unstyled"><%= link_to "カレンダー", "" %></li>
+            <li class="list-unstyled"><%= link_to "ユーザー一覧", users_path %></li>
+            <li class="list-unstyled"><%= link_to "チャット", "" %></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <%= yield %>
+        </div>
+      </div>
       <%= render "layouts/footer" %>
     </div>
   </body>

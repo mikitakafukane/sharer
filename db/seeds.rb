@@ -8,9 +8,12 @@
 
 4.times do |n|
   User.create!(
-    name:           "テストユーザー#{n + 1}",
-    email:          "user#{n + 1}@test.com",
-    password:       "usertest",
+    name:       "テストユーザー#{n + 1}",
+    email:      "user#{n + 1}@test.com",
+    password:   "usertest",
+    image_id:   File.open("./app/assets/images/no_image.jpg"),
+    belonging:  "20210#{n + 1}",
+    is_deleted: "false"
   )
 end
 

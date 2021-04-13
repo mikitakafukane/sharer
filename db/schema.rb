@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_080942) do
+ActiveRecord::Schema.define(version: 2021_04_13_122301) do
 
   create_table "belongings", force: :cascade do |t|
     t.integer "user_id"
@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_080942) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -118,7 +117,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_080942) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "image_id"
-    t.integer "belongings"
+    t.integer "belonging"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

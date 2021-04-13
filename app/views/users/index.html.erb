@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="text-center">ユーザー一覧</h2>
+  <table class="table table-hover table-borderd table-condensed">
+    <thead>
+      <tr class="info">
+        <th>ユーザーid</th>
+        <th>アイコン画像</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>所属</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr class="info">
+        <th><%= user.id %></th>
+        <th><%#<%= attachment_image_tag student, :image, :fill, 40, 40, format: "jpg", fallback: "no_image.jpg" %></th>
+        <th><%=link_to user.name, user_path(user) %></th>
+        <th><%= user.email %></th>
+        <th><%= user.belonging %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
