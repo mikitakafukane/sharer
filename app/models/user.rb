@@ -6,4 +6,9 @@ class User < ApplicationRecord
          
   has_many :belongings
   has_many :chats
+  has_many :rooms, through: :belongings
+  
+  has_many :posts
+  has_many :likes
+  has_many :like_posts, through: :likes, source: :post
 end

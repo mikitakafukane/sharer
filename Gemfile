@@ -84,3 +84,5 @@ gem 'simple_calendar', '~> 2.0'
 gem 'dotenv-rails'
 
 gem 'rename'
+
+gem 'kaminari','~> 1.2.1'

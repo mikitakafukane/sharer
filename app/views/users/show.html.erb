@@ -6,7 +6,7 @@
 				<h4><strong class="information-link"><i class="far fa-user"></i>登録情報</strong></h4>
 				<%= link_to "編集する", edit_user_path, class: "btn btn-success ml-3 mb-3" %>
 				<% if current_user != @user %>
-				  <%= link_to 'chatを始める', chat_path(@user.id)%>
+				  <%= link_to 'chatを始める', chat_path(@user)%>
 				<% end %>
 			</div>
 			<table class="table table-bordered table-condensed" >
@@ -28,6 +28,14 @@
 						<td class="text-left"><%= @user.belonging %></td>
 					</tr>
 				</tbody>
+				<% @posts.each do |post| %>
+				  <hr>
+				  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+				<% end %>
+				<% @like_posts.each do |post| %>
+				  <hr>
+				  <p><span>いいね投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+				<% end %>
 			</table>
 		</div>
 	</div>
