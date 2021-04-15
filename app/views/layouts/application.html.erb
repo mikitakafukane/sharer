@@ -12,15 +12,15 @@
   <body>
     <div>
       <%= render "layouts/header" %>
-      <%#<%= render "layouts/flash" %>
+      <%= render "layouts/flash" %>
       <div class="container">
         <div class="row">
         <div class="clearfix"></div>
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="sidebar">
             <li class="list-unstyled"><%= link_to "掲示板", posts_path %></li>
-            <li class="list-unstyled"><%= link_to "タスク", "" %></li>
-            <li class="list-unstyled"><%= link_to "カレンダー", "" %></li>
+            <li class="list-unstyled"><%= link_to "タスク", tasks_path %></li>
+            <li class="list-unstyled"><%= link_to "カレンダー", events_path %></li>
             <li class="list-unstyled"><%= link_to "ユーザー一覧", users_path %></li>
             <li class="list-unstyled"><%= link_to "チャット", "" %></li>
           </ul>
