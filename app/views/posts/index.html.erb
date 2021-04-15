@@ -2,7 +2,7 @@
 <div class="contents row">
   <div class="container">
     <%= form_with model: @post, url:posts_path, method: :post, local: true do |f| %>
-      <%= f.text_area :content, placeholder: "text", rows: "10" %>
+      <%= f.text_area :content, placeholder: "text", rows: "5" %>
       <%= f.hidden_field :user_id %>
       <%= f.submit "投稿" %>
     <% end %>
@@ -10,7 +10,7 @@
 </div>
 
 <div class="comment">
-  <% @posts.each do |post|%>
+  <% @posts.each do |post| %>
     <div class="comments">
       <%= post.content %>
     </div>
@@ -24,16 +24,17 @@
       <p><span>お気に入り数: </span><%= post.likes.count %></p>
     <% end %>
     
-    <%= @comments.each do |comment| %>
+    <%= form_with model: [post, @comment], local: true do |f| %>
+      <%= f.text_field :content %>
+      <%= f.hidden_field :user_id %>
+      <%= f.submit "投稿" %>
+    <% end %>
+    
+    <% post.comments.each do |comment| %>
       <%= comment.content %>
     <% end %>
     
-    <%#<%= form_with model: [@post, @comment], url:post_comment_path(post_id: :post.id, user_id: current_user.id), method: :post, local: true do |f| %>
-      <%#<%= f.text_field :content %>
-      <%#<%= f.submit "投稿" %>
-    <%#<% end %>
-    
-   <% end %>
+  <% end %>
 </div>
 <%= paginate @posts %>
 </div>
