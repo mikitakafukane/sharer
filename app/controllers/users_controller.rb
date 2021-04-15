@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @like_posts = @user.like_posts 
+    @comment_posts = @user.comment_posts
   end
 
   def edit
