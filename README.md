@@ -1,24 +1,30 @@
-# README
+# Sharer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+リモート学習の時に「勉強に詰まってモチベーションが上がらない...」「皆は順調に進んでるのかな？」なんて思ったことはありませんか？<br>
+BuddyCheckerは他の人の進捗状況がわかったり、情報共有が出来る、自分と仲間の勉強をサポートするサービスです。
 
-Things you may want to cover:
+### サイトテーマ
+仲間の進捗管理と勉強のモチベーションアップ
 
-* Ruby version
+### テーマを選んだ理由
+プログラミングスクール受講している際に同じグループの人が毎日の朝会に来なかったり、朝会が終わると集合通話から抜けて個人の作業になっていたりしていました。リモート学習では自分のペースで進められる分モチベーションを保つのが難しい面があるので、もっとお互いの進捗やログイン状況がわかり、情報共有出来るサイトがあれば、勉強のモチベーションを上げたり、コミュニケーションを取るきっかけになると思ったからです。
 
-* System dependencies
+### ターゲットユーザ
+・プログラミングをリモート学習している方
 
-* Configuration
+### 主な利用シーン
+・勉強に詰まってモチベーションが上がらなくなった時<br>
+・同じグループの人と情報共有をして勉強を進めたい時
 
-* Database creation
+## 設計書
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1Fr2HHUrd4QDtPYW2ZQbFpFwQE80ldvnCzleo0k7ESxM/edit#gid=0
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
