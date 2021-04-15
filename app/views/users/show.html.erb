@@ -36,6 +36,10 @@
 				  <hr>
 				  <p><span>いいね投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
 				<% end %>
+				<% @comment_posts.each do |post| %>
+				  <hr>
+				  <p><span>コメント内容: </span><%=link_to post.content, post_path(post.id) %></p>
+				<% end %>
 			</table>
 		</div>
 	</div>

@@ -5,6 +5,8 @@ class PostsController < ApplicationController
     @posts = Post.order("created_at DESC")
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(5)
     @post = Post.new
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def create
@@ -20,6 +22,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :user_id)
+    params.require(:post).permit(:content)
   end
 end

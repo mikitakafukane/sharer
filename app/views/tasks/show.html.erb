@@ -1,0 +1,12 @@
+<%= link_to "一覧に戻る", tasks_path, class: "btn btn-success" %>
+
+<table class= "table table-hover">
+  <tbody>
+    <tr>
+      <th>タスク</th>
+      <td><%= @task.title %></td>
+    </tr>
+    <%= link_to "編集", edit_task_path(@task), class: "btn btn-success" %>
+    <%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+  </tbody>
+</table>
