@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<th class="bg-light">アイコン画像</th>
-						<td class="text-left"></td>
+						<td class="text-left"><%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg" %></td>
 					</tr>
 					<tr>
 						<th class="bg-light">メールアドレス</th>

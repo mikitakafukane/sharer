@@ -16,9 +16,9 @@
     </div>
     <% if user_signed_in? %>
       <% if post.liked_by?(current_user) %>
-          <p><span>お気に入り解除: </span><%=link_to post.likes.count, post_likes_path(post.id), method: :delete %></p>
+          <p><%=link_to post.likes.count, post_likes_path(post.id), method: :delete, class: "fas fa-heart" %></p>
       <% else %>
-          <p><span>お気に入り登録: </span><%=link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
+          <p><%=link_to post.likes.count, post_likes_path(post.id), method: :post, class: "fas fa-heart" %></p>
       <% end %>
     <% else %>
       <p><span>お気に入り数: </span><%= post.likes.count %></p>
@@ -31,7 +31,12 @@
     <% end %>
     
     <% post.comments.each do |comment| %>
-      <%= comment.content %>
+    <ul class="media-list">
+      <li class="media">
+        <%= attachment_image_tag user, :image, fallback: "no_image.jpg", class: "pull-left", size: "100x100" %>
+        <%= comment.content %>
+      </li>
+    </ul>
     <% end %>
     
   <% end %>
