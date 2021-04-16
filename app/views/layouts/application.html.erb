@@ -10,23 +10,17 @@
   </head>
 
   <body>
-    <div>
+    <div class="bg-gradient" id="wrapper">
       <%= render "layouts/header" %>
-      <%= render "layouts/flash" %>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-        <div class="clearfix"></div>
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="sidebar">
-            <li class="list-unstyled"><%= link_to "掲示板", posts_path %></li>
-            <li class="list-unstyled"><%= link_to "タスク", tasks_path %></li>
-            <li class="list-unstyled"><%= link_to "カレンダー", events_path %></li>
-            <li class="list-unstyled"><%= link_to "ユーザー一覧", users_path %></li>
-            <li class="list-unstyled"><%= link_to "チャット", "" %></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <%= yield %>
+          <div class="col-lg-2">
+          <%= render "layouts/sidebar" %>
+          </div>
+          <div class="col-lg-9 col-lg-offset-1">
+            <%= render "layouts/flash" %>
+            <%= yield %>
+          </div>
         </div>
       </div>
       <%= render "layouts/footer" %>

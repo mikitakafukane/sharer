@@ -1,3 +1,5 @@
+<h2 class="text-white">登録情報編集</h2>
+<div class="py-4 px-4 bg-light">
 <%= form_with(model: contact, local: true) do |form| %>
   <% if contact.errors.any? %>
     <div id="error_explanation">
@@ -30,3 +32,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+<%= link_to '戻る', contacts_path %>
+</div>

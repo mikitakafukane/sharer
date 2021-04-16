@@ -1,13 +1,16 @@
-<%= link_to 'イベント追加', new_event_path %>
-
-
-<%= month_calendar events: @events do |date, events| %>
-  <%= date.day %>
-
-   <% events.each do |event| %>
-    <div>
-      <%= link_to event.title, event_path(events) %>
-    </div>
+<h2 class="text-white">カレンダー</h2>
+	<div class="py-4 px-4 bg-light">
+  <%= link_to 'イベント追加', new_event_path %>
+  
+  
+  <%= month_calendar events: @events do |date, events| %>
+    <%= date.day %>
+  
+     <% events.each do |event| %>
+      <div>
+        <%= link_to event.title, event_path(events) %>
+      </div>
+    <% end %>
+  
   <% end %>
-
-<% end %>
+  </div>

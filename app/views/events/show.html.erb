@@ -1,24 +1,28 @@
-<%= link_to "カレンダーに戻る", events_path, class: "btn btn-success" %>
+<h2 class="text-white">イベント詳細</h2>
+	<div class="py-4 px-4 bg-light">
 
-<table class="table table-bordered table-condensed" >
-	<tbody>
-		<tr>
-			<th class="info col-xs-2 bg-light">title</th>
-			<td class="text-left"><%= @event.title %></td>
-		</tr>
-		<tr>
-			<th class="bg-light">description</th>
-			<td class="text-left"><%= @event.description %></td>
-		</tr>
-		<tr>
-			<th class="bg-light">start_date</th>
-			<td class="text-left"><%= @event.start_date %></td>
-		</tr>
-		<tr>
-			<th class="bg-light">end_date</th>
-			<td class="text-left"><%= @event.end_date %></td>
-		</tr>
-		<%= link_to "編集", edit_event_path(@event), class: "btn btn-success" %>
-    <%= link_to "削除", @event, method: :delete, data: { confirm: "イベント「#{@event.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
-	</tbody>
-</table>
+	<%= link_to "カレンダーに戻る", events_path, class: "btn btn-success" %>
+	
+	<table class="table table-bordered table-condensed" >
+		<tbody>
+			<tr>
+				<th class="info col-xs-2 bg-light">title</th>
+				<td class="text-left"><%= @event.title %></td>
+			</tr>
+			<tr>
+				<th class="bg-light">description</th>
+				<td class="text-left"><%= @event.description %></td>
+			</tr>
+			<tr>
+				<th class="bg-light">start_date</th>
+				<td class="text-left"><%= @event.start_date %></td>
+			</tr>
+			<tr>
+				<th class="bg-light">end_date</th>
+				<td class="text-left"><%= @event.end_date %></td>
+			</tr>
+			<%= link_to "編集", edit_event_path(@event), class: "btn btn-success" %>
+	    <%= link_to "削除", @event, method: :delete, data: { confirm: "イベント「#{@event.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+		</tbody>
+	</table>
+	</div>
