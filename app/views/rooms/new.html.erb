@@ -1,0 +1,13 @@
+<h2 class="text-white">ルーム登録</h2>
+	<div class="py-4 px-4 bg-light">
+
+  <%= link_to "一覧に戻る", rooms_path, class: "btn btn-primary" %>
+
+  <%= form_with model: @room, local: true do |f| %>
+    <%= f.label :ルーム名 %>
+    <%= f.text_field :name, placeholder: "title" %>
+    
+    <%= f.submit "作成", class: "btn btn-success" %>
+  <% end %>
+
+  </div>

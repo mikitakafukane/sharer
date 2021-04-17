@@ -1,0 +1,22 @@
+<h2 class="text-white">メンバー追加</h2>
+	<div class="py-4 px-4 bg-light">
+
+    <table class= "table table-hover">
+      <thead class= "thead-default">
+        <tr>
+          <th>ルーム</th>
+          <th></td>
+        </tr>
+      </thead>
+      <tbody>
+        <div class="check_box" >
+          <%= form_with model: @room, local: true do |f| %>
+            <%= f.collection_check_boxes(:user_ids, User.all, :id, :name) do |user| %>
+              <%= user.label { user.check_box + user.text } %>
+            <% end %>
+          <%= f.submit "作成", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </tbody>
+    </table>
+  </div>

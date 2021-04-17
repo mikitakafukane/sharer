@@ -1,0 +1,28 @@
+<h2 class="text-white">ルーム詳細</h2>
+	<div class="py-4 px-4 bg-light">
+
+	<%= link_to "ルーム一覧に戻る", rooms_path, class: "btn btn-success" %>
+	<%= link_to "ユーザー追加除外", room_belongings_path(room_id: @room.id), class: "btn btn-success" %>
+
+	<table class="table table-bordered table-condensed" >
+		<tbody>
+			<tr>
+				<th class="info col-xs-2 bg-light">ユーザ名</th>
+				<th class="info col-xs-2 bg-light">メールアドレス</th>
+				<th class="info col-xs-2 bg-light"></th>
+			</tr>
+　　　<% @belonging.users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to "編集", edit_task_path(task), class: "btn btn-success" %>
+            <%= link_to "削除", task, method: :delete, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <%  end %>
+			<%= link_to "編集", edit_room_path(@room), class: "btn btn-success" %>
+	    <%= link_to "削除", @room, method: :delete, data: { confirm: "イベント「#{@room.name}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+		</tbody>
+	</table>
+	</div>

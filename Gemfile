@@ -88,3 +88,5 @@ gem 'dotenv-rails'
 gem 'rename'
 
 gem 'kaminari','~> 1.2.1'
+
+gem 'ransack'

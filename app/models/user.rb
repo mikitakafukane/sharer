@@ -16,6 +16,6 @@ class User < ApplicationRecord
   
   attachment :image
   
-  # has_many :active_tasks,  class_name: 'Task', foreign_key: 'creater_id',   dependent: :destroy
-  # has_many :passive_tasks, class_name: 'Task', foreign_key: 'performer_id', dependent: :destroy
+  has_many :creater_tasks,  class_name: 'Task', foreign_key: 'creater_id',   dependent: :destroy
+  has_many :performer_tasks, class_name: 'Task', foreign_key: 'performer_id', dependent: :destroy
 end
