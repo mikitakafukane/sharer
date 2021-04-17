@@ -15,4 +15,7 @@ class User < ApplicationRecord
   has_many :comment_posts, through: :comments, source: :post
   
   attachment :image
+  
+  # has_many :active_tasks,  class_name: 'Task', foreign_key: 'creater_id',   dependent: :destroy
+  # has_many :passive_tasks, class_name: 'Task', foreign_key: 'performer_id', dependent: :destroy
 end
