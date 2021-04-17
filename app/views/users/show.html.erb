@@ -1,46 +1,40 @@
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<h4 class="m-4 col-2 bg-light text-center">マイページ</h4>
-			<div class ="d-flex">
-				<h4><strong class="information-link"><i class="far fa-user"></i>登録情報</strong></h4>
-				<%= link_to "編集する", edit_user_path, class: "btn btn-success ml-3 mb-3" %>
-				<% if current_user != @user %>
-				  <%= link_to 'chatを始める', chat_path(@user)%>
-				<% end %>
-			</div>
-			<table class="table table-bordered table-condensed" >
-				<tbody>
-					<tr>
-						<th class="info col-xs-2 bg-light">氏名</th>
-						<td class="text-left"><%= @user.name %></td>
-					</tr>
-					<tr>
-						<th class="bg-light">アイコン画像</th>
-						<td class="text-left"></td>
-					</tr>
-					<tr>
-						<th class="bg-light">メールアドレス</th>
-						<td class="text-left"><%= @user.email %></td>
-					</tr>
-					<tr>
-						<th class="bg-light">所属</th>
-						<td class="text-left"><%= @user.belonging %></td>
-					</tr>
-				</tbody>
-				<% @posts.each do |post| %>
-				  <hr>
-				  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
-				<% end %>
-				<% @like_posts.each do |post| %>
-				  <hr>
-				  <p><span>いいね投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
-				<% end %>
-				<% @comment_posts.each do |post| %>
-				  <hr>
-				  <p><span>コメント内容: </span><%=link_to post.content, post_path(post.id) %></p>
-				<% end %>
-			</table>
-		</div>
+
+  <h2 class="text-white">ユーザー一覧</h2>
+  	<div class="py-4 px-4 bg-light">
+	<%= link_to "編集する", edit_user_path, class: "btn btn-success ml-3 mb-3" %>
+	<% if current_user != @user %>
+	  <%= link_to 'chatを始める', chat_path(@user)%>
+	<% end %>
+	<table class="table table-bordered table-condensed" >
+		<tbody>
+			<tr>
+				<th class="info col-xs-2 bg-light">氏名</th>
+				<td class="text-left"><%= @user.name %></td>
+			</tr>
+			<tr>
+				<th class="bg-light">アイコン画像</th>
+				<td class="text-left"><%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg" %></td>
+			</tr>
+			<tr>
+				<th class="bg-light">メールアドレス</th>
+				<td class="text-left"><%= @user.email %></td>
+			</tr>
+			<tr>
+				<th class="bg-light">所属</th>
+				<td class="text-left"><%= @user.belonging %></td>
+			</tr>
+		</tbody>
+		<% @posts.each do |post| %>
+		  <hr>
+		  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+		<% end %>
+		<% @like_posts.each do |post| %>
+		  <hr>
+		  <p><span>いいね投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+		<% end %>
+		<% @comment_posts.each do |post| %>
+		  <hr>
+		  <p><span>コメント内容: </span><%=link_to post.content, post_path(post.id) %></p>
+		<% end %>
+	</table>
 	</div>
-</div>

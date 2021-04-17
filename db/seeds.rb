@@ -11,9 +11,7 @@
     name:       "テストユーザー#{n + 1}",
     email:      "user#{n + 1}@test.com",
     password:   "usertest",
-    image_id:   File.open("./app/assets/images/no_image.jpg"),
-    belonging:  "20210#{n + 1}",
-    is_deleted: "false"
+    belonging:  "20210#{n + 1}"
   )
 end
 

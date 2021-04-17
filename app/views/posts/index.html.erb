@@ -1,40 +1,35 @@
-
-<div class="contents row">
-  <div class="container">
-    <%= form_with model: @post, url:posts_path, method: :post, local: true do |f| %>
-      <%= f.text_area :content, placeholder: "text", rows: "5" %>
-      <%= f.hidden_field :user_id %>
-      <%= f.submit "投稿" %>
-    <% end %>
+<h2 class="text-white">投稿一覧</h2>
+	<div class="py-4 px-4 bg-light">
+    <%= render "form", post: @post %>
   </div>
-</div>
+  
 
-<div class="comment">
-  <% @posts.each do |post| %>
-    <div class="comments">
-      <%= post.content %>
-    </div>
-    <% if user_signed_in? %>
-      <% if post.liked_by?(current_user) %>
-          <p><span>お気に入り解除: </span><%=link_to post.likes.count, post_likes_path(post.id), method: :delete %></p>
-      <% else %>
-          <p><span>お気に入り登録: </span><%=link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
-      <% end %>
-    <% else %>
-      <p><span>お気に入り数: </span><%= post.likes.count %></p>
+    <% @posts.each do |post| %>
+      <div class="py-4 px-4 bg-light mt-3">
+        <%= post.content %>
+          <% if post.liked_by?(current_user) %>
+              <p><%=link_to "いいね#{post.likes.count}", post_likes_path(post.id), method: :delete %></p>
+          <% else %>
+              <p><%=link_to "いいね#{post.likes.count}", post_likes_path(post.id), method: :post %></p>
+          <% end %>
+        
+        <% post.comments.each do |comment| %>
+          <ul class="media-list">
+            <li class="media">
+              <%= attachment_image_tag comment.user, :image, :fill, 40, 40, fallback: "no_image.jpg" %>
+              <%= comment.content %>
+            </li>
+          </ul>
+        <% end %>
+        
+        <%= form_with model: [post, @comment], local: true do |f| %>
+          <%= f.text_field :content %>
+          <%= f.hidden_field :user_id %>
+          <%= f.submit "投稿" %>
+        <% end %>
+        
+      </div>
     <% end %>
     
-    <%= form_with model: [post, @comment], local: true do |f| %>
-      <%= f.text_field :content %>
-      <%= f.hidden_field :user_id %>
-      <%= f.submit "投稿" %>
-    <% end %>
-    
-    <% post.comments.each do |comment| %>
-      <%= comment.content %>
-    <% end %>
-    
-  <% end %>
-</div>
-<%= paginate @posts %>
-</div>
+    <%= paginate @posts %>
+  </div>
