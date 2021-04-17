@@ -1,9 +1,19 @@
-<div class="container">
-  <h2 class="text-center">ユーザー一覧</h2>
+  <div class="row">
+    
+  <h2 class="col-lg-4 text-white">ユーザー一覧</h2>
+  <div class="col-lg-8">
+    
+   <%= search_form_for @q do |f| %>
+    <%= f.search_field :name_cont, placeholder: "ユーザー名で検索" %>
+    <%= f.submit "検索" %>
+  <% end %>
+  </div>
+  </div>
+  <div class="py-4 px-4 bg-light">
+    
   <table class="table table-hover table-borderd table-condensed">
     <thead>
       <tr class="info">
-        <th>ユーザーid</th>
         <th>アイコン画像</th>
         <th>氏名</th>
         <th>メールアドレス</th>
@@ -13,8 +23,7 @@
     <tbody>
       <% @users.each do |user| %>
       <tr class="info">
-        <th><%= user.id %></th>
-        <th><%#<%= attachment_image_tag student, :image, :fill, 40, 40, format: "jpg", fallback: "no_image.jpg" %></th>
+        <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
         <th><%=link_to user.name, user_path(user) %></th>
         <th><%= user.email %></th>
         <th><%= user.belonging %></th>
@@ -22,4 +31,4 @@
       <% end %>
     </tbody>
   </table>
-</div>
+  </div>

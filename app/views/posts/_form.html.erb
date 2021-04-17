@@ -1,0 +1,7 @@
+<div class="form">
+  <%= form_with model: post, url:posts_path, method: :post, local: true do |f| %>
+    <%= f.text_area :content, placeholder: "text", rows: "5" %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit "投稿" %>
+  <% end %>
+</div>
