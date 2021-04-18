@@ -26,14 +26,14 @@ class RoomsController < ApplicationController
   #   @room = Room.find(params[:id])
   # end
   
-  # def update
-  #   if room = Room.find(params[:id])
-  #     room.update!(room_params)
-  #     redirect_to rooms_path, notice: 'グループを更新しました'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if room = Room.find(params[:id])
+      room.update!(room_params)
+      redirect_to rooms_path, notice: 'グループを更新しました'
+    else
+      render :edit
+    end
+  end
   
   private
   def room_params

@@ -1,6 +1,8 @@
 <h2 class="text-white">ルーム詳細</h2>
 	<div class="py-4 px-4 bg-light">
 
+	<%= link_to "ユーザー追加除外", room_belongings_index_path(@room), class: "btn btn-success" %>
+
 	<%= link_to "ルーム一覧に戻る", rooms_path, class: "btn btn-success" %>
 	<p><%= @room.name %></p>
 	<table class="table table-bordered table-condensed" >

@@ -4,10 +4,6 @@ class UsersController < ApplicationController
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true)
   end
-
-  def belonging
-    Belonging.create(user_id: params[:user_id], group_id: params[:group_id])
-  end
   
   def show
     @user = User.find(params[:id])
