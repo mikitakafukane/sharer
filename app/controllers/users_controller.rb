@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true)
   end
 
+  def belonging
+    Belonging.create(user_id: params[:user_id], group_id: params[:group_id])
+  end
+  
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -31,4 +35,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :image, :email, :belonging)
   end
+  
 end

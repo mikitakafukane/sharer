@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   resources :contacts
 
   devise_for :users
-  resources :users, only: [:index, :show, :edit, :update]
+  
+  resources :users, only: [:index, :show, :edit, :update] do
+    get 'users/belonging'
+  end
   resources :chats, only: [:show, :create, :destroy]
   resources :posts, only: [:index, :create, :destroy] do
     resource :likes,    only: [:create, :destroy]
@@ -11,9 +15,7 @@ Rails.application.routes.draw do
   end
   resources :tasks
   resources :events
-  resources :rooms do
-    resources :belongings, only: [:index]
-  end
+  resources :rooms 
 
   root 'homes#top'
 

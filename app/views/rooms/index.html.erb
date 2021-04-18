@@ -15,9 +15,8 @@
         <tr>
           <td><%= room.name %></td>
           <td>
-            <%= link_to "所属メンバー一覧", room_path(room), class: "btn btn-success" %>
             <%= link_to "編集", edit_room_path(room), class: "btn btn-success" %>
-            <%= link_to "削除", room, method: :delete, data: { confirm: "ルーム「#{room.name}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+            <%= link_to "詳細", room_path(room), class: "btn btn-success" %>
           </td>
         </tr>
       <%  end %>

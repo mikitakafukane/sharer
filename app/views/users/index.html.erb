@@ -10,7 +10,7 @@
   </div>
   </div>
   <div class="py-4 px-4 bg-light">
-    
+
   <table class="table table-hover table-borderd table-condensed">
     <thead>
       <tr class="info">
@@ -22,12 +22,15 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-      <tr class="info">
-        <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
-        <th><%=link_to user.name, user_path(user) %></th>
-        <th><%= user.email %></th>
-        <th><%= user.belonging %></th>
-      </tr>
+        <tr class="info">
+          <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
+          <th><%=link_to user.name, user_path(user) %></th>
+          <th><%= user.email %></th>
+          <th><%= user.belonging %></th>
+          <th>
+            
+          </th>
+        </tr>
       <% end %>
     </tbody>
   </table>
