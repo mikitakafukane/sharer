@@ -1,19 +1,4 @@
 <h2 class="text-white">ルーム編集</h2>
-	<div class="py-4 px-4 bg-light">
-	  
-  <%= link_to "ルーム一覧に戻る", rooms_path, class: "btn btn-success" %>
-  
-  <%= form_with model: @room, local: true do |f| %>
-  
-    <div class="title">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-  
-    <div class="submit">
-      <%= f.submit %>
-    </div>
-  
-  <% end %>
-
-  </div>
+<div class="py-4 px-4 bg-light">
+  <%= render 'form', room: @room %>
+</div>

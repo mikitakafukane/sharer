@@ -3,13 +3,16 @@ class UsersController < ApplicationController
     @users = User.all
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true)
+               .page(params[:page])
+               .per(8)
   end
-
+  
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
     @like_posts = @user.like_posts 
     @comment_posts = @user.comment_posts
+    @tasks = Task.all.includes(:user)
   end
 
   def edit
@@ -31,4 +34,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :image, :email, :belonging)
   end
+  
 end

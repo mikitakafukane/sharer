@@ -1,33 +1,33 @@
 <h2 class="text-white">登録情報編集</h2>
-	<div class="py-4 px-4 bg-light">
-    <p><%= link_to "戻る", user_path(@user), class: "fas fa-arrow-circle-left btn btn-lg" %></p>
+<div class="py-4 px-4 bg-light">
+  <%= link_to "戻る", user_path(@user), class: "btn btn-primary" %>
 
   <%= form_with model: @user, local: true , method: :patch do |f| %>
-    <div class="form-inline mb-3">
-      <label>ユーザーID</label>
-      <p><%= @user.id %></p>
-    </div>
-    <div class="form-group">
-      <%= f.label "名前" %><br />
-      <%= f.text_field :name, autofocus: true, placeholder: "名前", class: "form-control mr-3" %>
-    </div>
-    <div class="form-group">
-      <%= f.label "メールアドレス" %><br />
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label "所属" %><br />
-      <%= f.text_field :belonging, autocomplete: 'address', class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label "アイコン画像" %>
-      <%= f.attachment_field :image, class: "form-control-file col-md-8 pl-0" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit "変更内容を保存", class: "btn btn-block btn-success" %>
-    </div>
+    <table>
+      <tr>
+        <td><%= f.label "ユーザーID" %></td>
+        <td><%= @user.id %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "名前" %></td>
+        <td><%= f.text_field :name, autofocus: true, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "メールアドレス" %></td>
+        <td><%= f.email_field :email, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "所属" %></td>
+        <td><%= f.text_field :belonging, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "アイコン画像" %></td>
+        <td><%= f.attachment_field :image, class: "form-control-file" %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "変更内容を保存", class: "btn btn-block btn-success" %></td>
+        <td></td>
+      </tr>
+    </table>
   <% end  %>
-  <%#= link_to "退会する", quit_customer_path(@customer), class: "btn btn-danger" %>
-</div>
 </div>

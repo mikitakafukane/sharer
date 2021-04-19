@@ -1,28 +1,42 @@
-<h2 class="text-white">ルーム詳細</h2>
-	<div class="py-4 px-4 bg-light">
+<h2 class="text-white">ルーム：<%= @room.name %> 詳細画面</h2>
+<div class="py-4 px-4 bg-light">
 
+	<%= link_to "ユーザー追加除外", room_belongings_index_path(@room), class: "btn btn-success" %>
 	<%= link_to "ルーム一覧に戻る", rooms_path, class: "btn btn-success" %>
-	<%= link_to "ユーザー追加除外", room_belongings_path(room_id: @room.id), class: "btn btn-success" %>
 
-	<table class="table table-bordered table-condensed" >
+	<table class="col-lg-2 table table-bordered table-condensed" >
 		<tbody>
 			<tr>
-				<th class="info col-xs-2 bg-light">ユーザ名</th>
-				<th class="info col-xs-2 bg-light">メールアドレス</th>
-				<th class="info col-xs-2 bg-light"></th>
+				<th>ユーザ名</th>
 			</tr>
-　　　<% @belonging.users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td>
-            <%= link_to "編集", edit_task_path(task), class: "btn btn-success" %>
-            <%= link_to "削除", task, method: :delete, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
-          </td>
-        </tr>
-      <%  end %>
-			<%= link_to "編集", edit_room_path(@room), class: "btn btn-success" %>
-	    <%= link_to "削除", @room, method: :delete, data: { confirm: "イベント「#{@room.name}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+	　　　<% @room.users.each do |user| %>
+	      <tr>
+	        <td><%= link_to user.name, user_path(user) %></td>
+	      </tr>
+	    <%  end %>
 		</tbody>
 	</table>
-	</div>
+	
+	<% @posts.each do |post| %>
+	    <div class=" py-4 px-4 mt-3">
+	      <%= post.content %>
+	        <% if post.liked_by?(current_user) %>
+	            <p><%=link_to "いいね#{post.likes.count}", post_likes_path(post.id), method: :delete %></p>
+	        <% else %>
+	            <p><%=link_to "いいね#{post.likes.count}", post_likes_path(post.id), method: :post %></p>
+	        <% end %>
+	      
+	      <% post.comments.each do |comment| %>
+	        <ul class="media-list">
+	          <li class="media">
+	            <%= attachment_image_tag comment.user, :image, :fill, 40, 40, fallback: "no_image.jpg" %>
+	            <%= comment.content %>
+	          </li>
+	        </ul>
+	      <% end %>
+	      
+	    </div>
+	  <% end %>
+</div>
+	
+	

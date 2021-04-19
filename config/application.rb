@@ -18,6 +18,6 @@ module Sharer
     
     # config.logger = Logger.new(STDOUT)
 
-
+    config.time_zone = 'Asia/Tokyo'
   end
 end

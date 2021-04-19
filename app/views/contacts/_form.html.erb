@@ -1,5 +1,6 @@
-<h2 class="text-white">登録情報編集</h2>
+<h2 class="text-white">お問い合わせ</h2>
 <div class="py-4 px-4 bg-light">
+  
 <%= form_with(model: contact, local: true) do |form| %>
   <% if contact.errors.any? %>
     <div id="error_explanation">
@@ -12,25 +13,28 @@
       </ul>
     </div>
   <% end %>
+<table>
+  
+  <tr class="field">
+    <td><%= form.label :名前 %></td>
+    <td><%= form.text_field :name, autofocus: true, class: "form-control" %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :名前 %>
-    <%= form.text_field :name %>
-  </div>
+  <tr class="field">
+    <td><%= form.label :メールアドレス %></td>
+    <td><%= form.text_field :email, class: "form-control" %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :メールアドレス %>
-    <%= form.text_field :email %>
-  </div>
+  <tr class="field">
+    <td><%= form.label :内容 %></td>
+    <td><%= form.text_area :content, class: "form-control" %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :内容 %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <tr class="actions">
+    <td><%= form.submit "送信", class: "btn btn-success mt-2" %></td>
+    <td></td>
+  </tr>
+</table>
 <% end %>
-<%= link_to '戻る', contacts_path %>
+<%= link_to '戻る', contacts_path, class: "btn btn-primary mt-2" %>
 </div>

@@ -1,22 +1,5 @@
 <h2 class="text-white">タスク登録</h2>
-	<div class="py-4 px-4 bg-light">
-
+<div class="py-4 px-4 bg-light">
   <%= link_to "一覧に戻る", tasks_path, class: "btn btn-primary" %>
-
-  <%= form_with model: @task, local: true do |f| %>
-    <%= f.label :タイトル %>
-    <%= f.text_field :title, placeholder: "title" %>
-
-    <%= f.label :説明 %>
-    <%= f.text_area :description, placeholder: "descripton", rows: "10" %>
-    
-    <%= f.label :作成者 %>
-    <%= f.collection_select(:creater, User.all, :id, :name) %>
-    
-    <%= f.label :実行者 %>
-    <%= f.collection_select(:performer, User.all, :id, :name) %>
-
-    <%= f.submit "投稿", class: "btn btn-success" %>
-  <% end %>
-
-  </div>
+  <%= render 'form', task: @task %>
+</div>
