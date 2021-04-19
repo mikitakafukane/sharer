@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :like_posts,    through: :likes,    source: :post
   has_many :comments
   has_many :comment_posts, through: :comments, source: :post
+  
+  has_many :tasks
 
   attachment :image
 end

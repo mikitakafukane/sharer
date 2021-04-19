@@ -11,6 +11,7 @@ mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     resources :comments, only: [:create, :destroy]
   end
   resources :tasks
+  post '/tasks/:id/done' => 'tasks#done',   as: 'done'
   resources :events
   resources :rooms do
     get 'belongings/index'
