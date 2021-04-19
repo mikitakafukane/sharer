@@ -1,7 +1,7 @@
 <div class="form">
   <%= form_with model: post, url:posts_path, method: :post, local: true do |f| %>
-    <%= f.text_area :content, placeholder: "text", rows: "5" %>
+    <%= f.text_area :content, class: "form-control", placeholder: "投稿内容を入力して下さい" %>
     <%= f.hidden_field :user_id %>
-    <%= f.submit "投稿" %>
+    <%= f.submit "投稿", class: "btn btn-success mt-2" %>
   <% end %>
 </div>

@@ -17,17 +17,17 @@
   
   <tr class="field">
     <td><%= form.label :名前 %></td>
-    <td><%= form.text_field :name, placeholder: "名前" %></td>
+    <td><%= form.text_field :name, autofocus: true, class: "form-control" %></td>
   </tr>
 
   <tr class="field">
     <td><%= form.label :メールアドレス %></td>
-    <td><%= form.text_field :email, placeholder: "メールアドレス" %></td>
+    <td><%= form.text_field :email, class: "form-control" %></td>
   </tr>
 
   <tr class="field">
     <td><%= form.label :内容 %></td>
-    <td><%= form.text_area :content, placeholder: "内容" %></td>
+    <td><%= form.text_area :content, class: "form-control" %></td>
   </tr>
 
   <tr class="actions">

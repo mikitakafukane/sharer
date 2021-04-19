@@ -6,12 +6,11 @@ class RoomsController < ApplicationController
   
   def new
     @room = Room.new
-    # @room.users << current_user
   end
   
   def create
     @room = Room.new(room_params)
-    if @room.save
+    if @room.save!
       redirect_to @room, notice: 'ルームを作成しました'
     else
       render :new
@@ -20,6 +19,7 @@ class RoomsController < ApplicationController
   
   def show
     @room = Room.find(params[:id])
+    @posts = Post.where(user_id: @room.users.ids)
   end
   
   # def edit
@@ -27,8 +27,8 @@ class RoomsController < ApplicationController
   # end
   
   def update
-    if room = Room.find(params[:id])
-      room.update!(room_params)
+    room = Room.find(params[:id])
+    if room.update(room_params)
       redirect_to rooms_path, notice: 'グループを更新しました'
     else
       render :edit

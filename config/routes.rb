@@ -10,7 +10,7 @@ mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     resource :likes,    only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
-  resources :tasks
+  resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
   post '/tasks/:id/done' => 'tasks#done',   as: 'done'
   resources :events
   resources :rooms do

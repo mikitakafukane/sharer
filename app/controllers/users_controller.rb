@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @posts = @user.posts
     @like_posts = @user.like_posts 
     @comment_posts = @user.comment_posts
+    @tasks = Task.all.includes(:user)
   end
 
   def edit
