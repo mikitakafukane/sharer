@@ -7,12 +7,12 @@
     <% end %>
   </div>
 </div>
-  
-  
+
+
 <div class="py-4 px-4 bg-light">
   <%= link_to "新しいタスク", new_task_path, class: "btn btn-primary" %>
   <%= render 'task', tasks: @tasks %>
-  
+
   <h1>円グラフ</h1>
   <canvas id="myPieChart"></canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -22,21 +22,21 @@
   var myPieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ["A型", "O型", "B型", "AB型"],
+      labels: ["完了", "未完了",],
       datasets: [{
           backgroundColor: [
               "#BB5179",
-              "#FAFF67",
-              "#58A27C",
+              // "#FAFF67",
+              // "#58A27C",
               "#3C00FF"
           ],
-          data: [38, 31, 21, 10]
+          data: [<%= @tasks.where(status: "完了").count %>,<%= @tasks.where(status: "未完了").count %>]
       }]
     },
     options: {
       title: {
         display: true,
-        text: '血液型 割合'
+        text: 'タスク進捗度'
       }
     }
   });

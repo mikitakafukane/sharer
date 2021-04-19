@@ -18,11 +18,7 @@
     </tr>
     <tr>
       <td><%= f.submit "確定", class: "btn btn-success" %></td>
-      <td>
-        <% if Task.exists?(task.id) %>
-          <%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
-        <% end %>
-      </td>
+      <td></td>
     </tr>
   </table>
   <% end %>
