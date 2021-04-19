@@ -4,25 +4,25 @@
       <td><%= f.label :タイトル %></td>
       <td><%= f.text_field :title, placeholder: "title" %></td>
     </tr>
-
     <tr>
       <td><%= f.label :説明 %></td>
       <td><%= f.text_area :description, placeholder: "descripton" %></td>
     </tr>
-    
     <tr>
       <td><%= f.label :期限 %></td>
       <td><%= f.date_select :end_date %></td>
     </tr>
-    
     <tr>
       <td><%= f.label :ステータス %></td>
       <td><%= f.select :status, ["未完了","完了"] %></td>
     </tr>
-    
     <tr>
       <td><%= f.submit "確定", class: "btn btn-success" %></td>
-      <td></td>
+      <td>
+        <% if Task.exists?(task.id) %>
+          <%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+        <% end %>
+      </td>
     </tr>
   </table>
   <% end %>
