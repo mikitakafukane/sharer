@@ -1,9 +1,10 @@
 
-  <h2 class="text-white">ユーザー一覧</h2>
+  <h2 class="text-white">ユーザー詳細</h2>
   	<div class="py-4 px-4 bg-light">
-	<%= link_to "編集する", edit_user_path, class: "btn btn-success ml-3 mb-3" %>
 	<% if current_user != @user %>
-	  <%= link_to 'chatを始める', chat_path(@user)%>
+	  <%= link_to 'chatを始める', chat_path(@user), class: "btn btn-warning ml-3 mb-3" %>
+	<% else %>
+	  <%= link_to "編集する", edit_user_path, class: "btn btn-primary ml-3 mb-3" %>
 	<% end %>
 	<table class="table table-bordered table-condensed" >
 		<tbody>
@@ -37,4 +38,6 @@
 		  <p><span>コメント内容: </span><%=link_to post.content, post_path(post.id) %></p>
 		<% end %>
 	</table>
+    <%= render 'tasks/chart', tasks: @tasks %>
+	<%= link_to "タスク一覧",tasks_path %>
 	</div>

@@ -1,4 +1,13 @@
-<h2 class="text-white">投稿一覧</h2>
+<div class="row">
+  <h2 class="col-lg-4 text-white">投稿一覧</h2>
+  <div class="col-lg-8 form-inline">
+    <%= search_form_for @q do |f| %>
+      <%= f.search_field :content_cont, class: "form-control", placeholder: "投稿で検索" %>
+      <%= f.submit "検索", class: "btn btn-light" %>
+    <% end %>
+  </div>
+</div>
+
 	<div class="py-4 px-4 bg-light">
     <%= render "form", post: @post %>
   </div>
@@ -23,9 +32,9 @@
         <% end %>
         
         <%= form_with model: [post, @comment], local: true do |f| %>
-          <%= f.text_field :content %>
+          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
           <%= f.hidden_field :user_id %>
-          <%= f.submit "投稿" %>
+          <%= f.submit "コメントする", class: "btn btn-info mt-2" %>
         <% end %>
         
       </div>

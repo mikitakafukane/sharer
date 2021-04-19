@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(updated_at: :desc)
   end
   
   def new
@@ -10,8 +10,8 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
-    if @room.save
-      redirect_to rooms_path, notice: 'ルームを作成しました'
+    if @room.save!
+      redirect_to @room, notice: 'ルームを作成しました'
     else
       render :new
     end
@@ -19,16 +19,16 @@ class RoomsController < ApplicationController
   
   def show
     @room = Room.find(params[:id])
-    @belonging = Room.find_by(room_id: room.id)
+    @posts = Post.where(user_id: @room.users.ids)
   end
   
-  def edit
-    @room = Room.find(params[:id])
-  end
+  # def edit
+  #   @room = Room.find(params[:id])
+  # end
   
   def update
-    if room = Room.find(params[:id])
-      room.update!(room_params)
+    room = Room.find(params[:id])
+    if room.update(room_params)
       redirect_to rooms_path, notice: 'グループを更新しました'
     else
       render :edit
@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
   
   private
   def room_params
-    params.require(:room).permit(:name)
+    params.require(:room).permit(:name, user_ids: [] )
   end
   
 end

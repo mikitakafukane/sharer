@@ -1,16 +1,15 @@
   <div class="row">
-    
-  <h2 class="col-lg-4 text-white">ユーザー一覧</h2>
-  <div class="col-lg-8">
-    
-   <%= search_form_for @q do |f| %>
-    <%= f.search_field :name_cont, placeholder: "ユーザー名で検索" %>
-    <%= f.submit "検索" %>
-  <% end %>
+    <h2 class="col-lg-4 text-white">ユーザー一覧</h2>
+    <div class="col-lg-8 form-inline">
+      <%= search_form_for @q do |f| %>
+        <%= f.search_field :name_cont, class: "form-control", placeholder: "ユーザー名で検索" %>
+        <%= f.submit "検索", class: "btn btn-light" %>
+      <% end %>
+    </div>
   </div>
-  </div>
+  
   <div class="py-4 px-4 bg-light">
-    
+
   <table class="table table-hover table-borderd table-condensed">
     <thead>
       <tr class="info">
@@ -22,13 +21,17 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-      <tr class="info">
-        <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
-        <th><%=link_to user.name, user_path(user) %></th>
-        <th><%= user.email %></th>
-        <th><%= user.belonging %></th>
-      </tr>
+        <tr class="info">
+          <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
+          <th><%=link_to user.name, user_path(user) %></th>
+          <th><%= user.email %></th>
+          <th><%= user.belonging %></th>
+          <th>
+            
+          </th>
+        </tr>
       <% end %>
     </tbody>
   </table>
+    <%= paginate @users %>
   </div>

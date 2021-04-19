@@ -22,3 +22,8 @@ end
   )
 end
 
+Room.create(name: 'フットサルサークル')
+Room.create(name: '写真部')
+Room.create(name: 'ボードゲーム愛好会')
+
+
