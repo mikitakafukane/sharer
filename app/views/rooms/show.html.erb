@@ -1,25 +1,20 @@
 <div class="row">
 	<div class="sidebar col-lg-2">
-	<%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-primary" %>
-
-	<%= link_to "ユーザー追加除外", room_belongings_index_path(@room), class: "btn btn-success" %>
-	　　<% @room.users.each do |user| %>
-	        <p><%= link_to user.name, user_path(user) %></br>
-	        [最終ログイン]<%= user.current_sign_in_at.strftime('%-m/%-d %-H:%-M') %>
-	        </p>
-	    <%  end %>
+    <h2 class="text-white">ルーム：<%= @room.name %> </h2>
+  	<%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-primary" %>
+  	<%= link_to "ユーザー追加除外", room_belongings_index_path(@room), class: "btn btn-success" %>
+  	<p>ルームメンバー</p>
+  　　<% @room.users.each do |user| %>
+          <p><%= link_to user.name, user_path(user) %></br>
+          [最終ログイン]<%= user.current_sign_in_at.strftime('%-m/%-d %-H:%-M') %>
+          <%= render 'tasks/chart', tasks: @tasks %>
+          </p>
+      <% end %>
 	</div>
-	<div class="col-lg-9 col-lg-ofset-1">
-
-
-<h2 class="text-white">ルーム：<%= @room.name %> </h2>
-<!--<div class="py-4 px-4 bg-light">-->
-
-  <div class="py-4 px-4 bg-light">
-    <%= render "posts/form", post: @post %>
-  </div>
-
-
+	<div class="col-lg-7">
+    <div class="py-4 px-4 bg-light mt-5">
+      <%= render "posts/form", post: @post %>
+    </div>
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
         <%= post.content %>
@@ -47,12 +42,17 @@
           <%= f.hidden_field :user_id %>
           <%= f.submit "コメントする", class: "btn btn-info mt-2" %>
         <% end %>
-
       </div>
     <% end %>
-
-<!--</div>-->
-
-
+	</div>
+	<div class="col-lg-2 col-lg-offset-1 bg-light pt-3 mt-5">
+    <%= form_with model: @chat, url:chats_path, method: :post, local: true do |f| %>
+        <%= f.text_field :content, class: "form-control", placeholder: "チャット" %>
+        <%= f.hidden_field :room_id %>
+    <% end %>
+	  <% @chats.each do |chat| %>
+      [<%= chat.user.name %>]
+      <%= chat.content %></br>
+    <% end %>
 	</div>
 </div>

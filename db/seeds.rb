@@ -73,7 +73,8 @@ end
 6.times do |n|
   Task.create!(
     user_id: n + 1,
-    title: "テスト#{n + 1}"
+    title: "テスト#{n + 1}",
+    status: "未完了"
   )
 end
 

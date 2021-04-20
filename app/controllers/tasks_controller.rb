@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     task.update(task_params)
-    redirect_to tasks_path, notice: "タスクを変更しました"
+    redirect_to request.referer, notice: "タスクを変更しました"
   end
 
   def destroy
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :description, :end_date, :status).merge(user_id: current_user.id)
+    params.require(:task).permit(:title, :description, :status).merge(user_id: current_user.id)
   end
 
 end
