@@ -7,7 +7,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="py-4 px-4 bg-light">
 
   <table class="table table-hover table-borderd table-condensed">
@@ -15,6 +15,7 @@
       <tr class="info">
         <th>アイコン画像</th>
         <th>氏名</th>
+        <th>最終ログイン</th>
         <th>メールアドレス</th>
         <th>所属</th>
       </tr>
@@ -24,14 +25,13 @@
         <tr class="info">
           <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
           <th><%=link_to user.name, user_path(user) %></th>
+          <th><%= user.current_sign_in_at.strftime('%-m月%-d日 %-H時%-M分') %></th>
           <th><%= user.email %></th>
           <th><%= user.belonging %></th>
-          <th>
-            
-          </th>
         </tr>
       <% end %>
     </tbody>
   </table>
     <%= paginate @users %>
   </div>
+  

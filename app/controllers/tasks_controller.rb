@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.where(user_id: current_user.id)
+    # @tasks = Task.where(user_id: current_user.id)
     # @tasks = Task.all.includes(:user)
     @task = Task.new
     @q = Task.ransack(params[:q])
-    @tasks_search = @q.result(distinct: true)
+    @tasks = @q.result(distinct: true)
+               .where(user_id: current_user.id)
   end
 
   def new

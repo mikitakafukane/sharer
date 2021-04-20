@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+# layout 'room', except: [:index, :new]
 
   def index
     @rooms = Room.all.order(updated_at: :desc)
@@ -19,6 +20,7 @@ class RoomsController < ApplicationController
   
   def show
     @room = Room.find(params[:id])
+    @tasks = Task.where(user_id: @room.users.ids)
     @posts = Post.where(user_id: @room.users.ids)
   end
   
