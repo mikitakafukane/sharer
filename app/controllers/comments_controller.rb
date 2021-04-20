@@ -4,14 +4,14 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
     @comment.save
-    redirect_to posts_path
+    redirect_to request.referer
   end
 
   def destory
     @post = Post.find(params[:post_id])
     @comment = @article.comments.find(params[:id])
     @comment.destroy
-    redirect_to posts_path
+    redirect_to request.referer
   end
 
   private

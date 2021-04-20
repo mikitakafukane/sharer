@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sherer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="bg-gradient" id="wrapper">
+      <%= render "layouts/header" %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-2">
+            <ul class="sidebar">
+              <li class="sidebar-item list-unstyled"><%= link_to "掲示板", posts_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "タスク", tasks_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "カレンダー", events_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "ユーザー", users_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "チャット", "" %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "ルーム", rooms_path %></li>
+            </ul>
+            <p>所属</p>
+            <ul class="sidebar">
+              <li class="sidebar-item list-unstyled"><%= link_to "掲示板", posts_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "タスク", tasks_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "カレンダー", events_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "ユーザー", users_path %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "チャット", "" %></li>
+              <li class="sidebar-item list-unstyled"><%= link_to "ルーム", rooms_path %></li>
+            </ul>
+
+          </div>
+          <div class="col-lg-9 col-lg-offset-1">
+            <%= render "layouts/flash" %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <%= render "layouts/footer" %>
+    </div>
+  </body>
+</html>

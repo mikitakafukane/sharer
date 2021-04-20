@@ -1,43 +1,75 @@
+<h2 class="text-white">ユーザーページ</h2>
+  <div class="row">
+    <div class="col-lg-2 bg-light py-3 px-3 mx-3">
+  		<div class="row px-3">
+	  		<h4>ユーザー情報</h4>
+			<% if current_user != @user %>
+			  <p class="ml-auto"><%= link_to 'chat', chat_path(@user), class: "btn btn-warning ml-3 mb-3" %></p>
+			<% else %>
+			  <p class="ml-auto"><%= link_to "編集", edit_user_path, class: "btn btn-primary ml-3 mb-3" %></p>
+			<% end %>
+  		</div>
+	  	<%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+	  	<p>
+		  氏名</br>
+		  <%= @user.name %>
+			</p>
+			<p>
+			  メールアドレス</br>
+			  <%= @user.email %>
+			</p>
+			<p>
+			  所属</br>
+			  <%= @user.belonging %>
+			</p>
+		</div>
+		
+		<div class="col-lg-3 bg-light py-3 px-3 mr-3">
+			<h4>所属ルーム一覧</h4>
+			<table class="table">
+				<tr>
+					<td>ルーム名</td>
+					<td></td>
+				</tr>
+				<% @rooms.each do |room| %>
+        <tr>
+          <td><%= room.name %></td>
+          <td class="text-right">
+            <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
+            <%= link_to "参加", room_path(room), class: "btn btn-success" %>
+          </td>
+        </tr>
+	    	<% end %>
+			</table>
+	   </div>
 
-  <h2 class="text-white">ユーザー詳細</h2>
-  	<div class="py-4 px-4 bg-light">
-	<% if current_user != @user %>
-	  <%= link_to 'chatを始める', chat_path(@user), class: "btn btn-warning ml-3 mb-3" %>
-	<% else %>
-	  <%= link_to "編集する", edit_user_path, class: "btn btn-primary ml-3 mb-3" %>
-	<% end %>
-	<table class="table table-bordered table-condensed" >
-		<tbody>
-			<tr>
-				<th class="info col-xs-2 bg-light">氏名</th>
-				<td class="text-left"><%= @user.name %></td>
-			</tr>
-			<tr>
-				<th class="bg-light">アイコン画像</th>
-				<td class="text-left"><%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg" %></td>
-			</tr>
-			<tr>
-				<th class="bg-light">メールアドレス</th>
-				<td class="text-left"><%= @user.email %></td>
-			</tr>
-			<tr>
-				<th class="bg-light">所属</th>
-				<td class="text-left"><%= @user.belonging %></td>
-			</tr>
-		</tbody>
-		<% @posts.each do |post| %>
-		  <hr>
-		  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
-		<% end %>
-		<% @like_posts.each do |post| %>
-		  <hr>
-		  <p><span>いいね投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
-		<% end %>
-		<% @comment_posts.each do |post| %>
-		  <hr>
-		  <p><span>コメント内容: </span><%=link_to post.content, post_path(post.id) %></p>
-		<% end %>
-	</table>
-    <%= render 'tasks/chart', tasks: @tasks %>
-	<%= link_to "タスク一覧",tasks_path %>
-	</div>
+		<div class="col-lg-3 bg-light py-3 px-3 mr-3">
+			<h4>投稿一覧</h4>
+			<% @posts.each do |post| %>
+			  <hr>
+			  <p><span>投稿: </span><%=link_to post.content, post_path(post.id) %></p>
+			<% end %>
+		</div>
+		
+		<div class="col-lg-3 bg-light py-3 px-3 mr-3">
+			<h4>いいね/コメント一覧</h4>
+			<% @like_posts.each do |post| %>
+			  <hr>
+			  <p><span>いいね: </span><%=link_to post.content, post_path(post.id) %></p>
+			<% end %>
+			<% @comment_posts.each do |post| %>
+			  <hr>
+			  <p><span>コメント: </span><%=link_to post.content, post_path(post.id) %></p>
+			<% end %>
+		</div>
+	
+	  <div class="col-lg-4 bg-light py-3 mx-3 mt-3">
+		  <h4>タスク進捗状況</h4>
+	     <%= render 'users/chart', tasks: @tasks %>
+		</div>
+	
+		<div class="col-lg-7 bg-light py-3 px-3 mt-3">
+		  <h4>タスク一覧</h4>
+		  <%= render 'tasks/task', tasks: @tasks %>
+		</div>
+  </div>

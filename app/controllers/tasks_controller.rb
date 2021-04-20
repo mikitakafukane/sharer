@@ -2,10 +2,11 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.where(user_id: current_user.id)
-    @tasks = Task.all.includes(:user)
+    # @tasks = Task.all.includes(:user)
     @task = Task.new
     @q = Task.ransack(params[:q])
     @tasks = @q.result(distinct: true)
+               .where(user_id: current_user.id)
   end
 
   def new
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     task.update(task_params)
-    redirect_to tasks_path, notice: "タスクを変更しました"
+    redirect_to request.referer, notice: "タスクを変更しました"
   end
 
   def destroy
@@ -42,7 +43,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :description, :end_date, :status).merge(user_id: current_user.id)
+    params.require(:task).permit(:title, :description, :status).merge(user_id: current_user.id)
   end
 
 end

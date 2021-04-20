@@ -12,7 +12,11 @@ class UsersController < ApplicationController
     @posts = @user.posts
     @like_posts = @user.like_posts 
     @comment_posts = @user.comment_posts
-    @tasks = Task.all.includes(:user)
+    @task = Task.find(params[:id])
+    @tasks = @user.tasks
+    # @tasks = Task.all.includes(:user)
+    @belongings = Belonging.where(user_id: current_user.id)
+    @rooms = @user.rooms
   end
 
   def edit

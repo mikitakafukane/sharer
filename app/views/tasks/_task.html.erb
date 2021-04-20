@@ -1,28 +1,28 @@
-<table class= "table table-hover">
+<table class= "table">
   <thead class= "thead-default">
     <tr>
       <th>タスク</th>
-      <!--<th>期限</th>-->
       <th>完了日時</th>
       <th>ステータス</th>
-      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
   <% tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
-      <%#<td><%= task.end_date %></td>
-      <td >
+      <td>
         <% if task.status == "完了" %>
-          <%= task.updated_at.strftime('%Y年%m月%d日 %H時%M分') %>
+          <%= task.updated_at.strftime('%-Y年%-m月%-d日 %-H時%-M分') %>
         <% end %>
       </td>
-      <td id="task<%= task.id %>" ><%= task.status %></td>
       <% if task.user_id == current_user.id %>
-        <td><%= button_to '完了', done_path(task), method: :post, remote: true, class: "btn btn-warning" %></td>
-        <td><%= link_to "編集", edit_task_path(task), class: "btn btn-primary" %></td>
-        <td><%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %></td>
+      <td id="task<%= task.id %>"><%= task.status %></td>
+        <td>
+          <%= link_to '完了', done_path(task), method: :post, remote: true, class: "btn btn-warning" %>
+          <%= link_to "編集", edit_task_path(task), class: "btn btn-primary" %>
+          <%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %></td>
+        </td>
       <% end %>
     </tr>
   <%  end %>
