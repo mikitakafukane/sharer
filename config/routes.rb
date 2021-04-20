@@ -6,7 +6,7 @@ mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   resources :users, only: [:index, :show, :edit, :update]
   resources :chats, only: [:show, :create, :destroy]
-  resources :posts, only: [:index, :create, :destroy] do
+  resources :posts, only: [:index, :show, :create, :destroy] do
     resource :likes,    only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
