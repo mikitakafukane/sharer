@@ -20,6 +20,13 @@ class PostsController < ApplicationController
     @post.save
     redirect_to request.referer
   end
+  
+  def show
+    @post = Post.find(params[:id])
+        @comments = @post.comments
+        @comment = Comment.new
+  end
+  
 
   def destroy
   end

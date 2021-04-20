@@ -22,6 +22,9 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @tasks = Task.where(user_id: @room.users.ids)
     @posts = Post.where(user_id: @room.users.ids)
+    @post = Post.new
+    @comments = @post.comments
+    @comment = Comment.new
   end
   
   # def edit
