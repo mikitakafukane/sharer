@@ -4,14 +4,14 @@ class PostsController < ApplicationController
   def index
     # @posts = Post.order("created_at DESC")
     # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(5)
-    @post = Post.new
-    @comments = @post.comments
-    @comment = Comment.new
-    @q = Post.ransack(params[:q])
+    @post  = Post.new
+    @q     = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
                .order("created_at DESC")
                .page(params[:page])
                .per(5)
+    @comment  = Comment.new
+    @comments = @post.comments
   end
 
   def create
@@ -22,9 +22,9 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find(params[:id])
-        @comments = @post.comments
-        @comment = Comment.new
+    @post     = Post.find(params[:id])
+    @comment  = Comment.new
+    @comments = @post.comments
   end
   
 

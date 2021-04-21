@@ -1,31 +1,24 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
-    @q = User.ransack(params[:q])
+    @q     = User.ransack(params[:q])
     @users = @q.result(distinct: true)
                .page(params[:page])
                .per(8)
   end
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts
-    @like_posts = @user.like_posts
-    @comment_posts = @user.comment_posts
-    @task = Task.find(params[:id])
-    @tasks = @user.tasks
-    # @tasks = Task.all.includes(:user)
-    @belongings = Belonging.where(user_id: current_user.id)
+    @user  = User.find(params[:id])
     @rooms = @user.rooms
-    # ---------chats----------
-    @personal_rooms = current_user.belongings.pluck(:room_id)
-    @personal_belongings = Belonging.find_by(user_id: @user.id, room_id: @personal_rooms)
     
-      @room = @personal_belongings.room
+    @task  = Task.find(params[:id])
+    @tasks = @user.tasks
     
-    @chats = @room.chats
-    @chat = Chat.new(room_id: @room.id)
-    # ---------chats---------
+    @posts         = @user.posts
+    @like_posts    = @user.like_posts
+    @comment_posts = @user.comment_posts
+    
+    @chat_rooms = current_user.belongings.pluck(:room_id)
+    @chats      = Chat.where(room_id: @chat_rooms)
   end
 
   def edit

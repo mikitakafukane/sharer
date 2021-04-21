@@ -13,7 +13,7 @@ class ChatsController < ApplicationController
       Belonging.create(user_id: @user.id, room_id: @room.id)
     end
     @chats = @room.chats
-    @chat = Chat.new(room_id: @room.id)
+    @chat  = Chat.new(room_id: @room.id)
   end
   
   def create

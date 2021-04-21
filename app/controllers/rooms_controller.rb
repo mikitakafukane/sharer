@@ -19,18 +19,13 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
-    # @users = @room.users
-    @posts = Post.where(user_id: @room.users.ids)
-    @post = Post.new
+    @room     = Room.find(params[:id])
+    @post     = Post.new
+    @posts    = Post.where(user_id: @room.users.ids)
+    @chat     = Chat.new(room_id: @room.id)
+    @chats    = @room.chats
+    @comment  = Comment.new
     @comments = @post.comments
-    @comment = Comment.new
-    @chats = @room.chats
-    @chat = Chat.new(room_id: @room.id)
-    
-    
-    # @user = 
-    # @tasks = Task.where(user_id: @user.id)
   end
 
   def edit
@@ -45,8 +40,6 @@ class RoomsController < ApplicationController
       render :edit
     end
   end
-
-
 
   private
   def room_params

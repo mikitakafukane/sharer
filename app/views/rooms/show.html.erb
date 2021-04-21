@@ -4,39 +4,10 @@
   	<%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-primary" %>
   	<h4 class="text-light mt-3">ルームメンバー</h4>
   　　<% @room.users.each do |user| %>
-          <p><%= link_to user.name, user_path(user) %></br>
-          [最終ログイン]<%= user.current_sign_in_at.strftime('%-m/%-d %-H:%-M') %>
-          <%= render 'tasks/chart', tasks: user.tasks, user: user  %>
-          <%#<%= render 'tasks/chart', tasks: Task.where(user_id: user.id)  %>
-          <!--<canvas id="myPieChart<= user.id %>"></canvas>-->
-          <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>-->
-
-          // <script>
-          // var ctx = document.getElementById("myPieChart<= user.id %>");
-          // var myPieChart = new Chart(ctx, {
-          //   type: 'pie',
-          //   data: {
-          //     labels: ["完了", "未完了",],
-          //     datasets: [{
-          //         backgroundColor: [
-          //             "#BB5179",
-          //             // "#FAFF67",
-          //             // "#58A27C",
-          //             "#3C00FF"
-          //         ],
-          //         data: [<= user.tasks.where(status: "完了").count %>,<= user.tasks.where(status: "未完了").count %>]
-          //     }]
-          //   },
-          //   options: {
-          //     title: {
-          //       display: true,
-          //       text: 'タスク進捗度'
-          //     }
-          //   }
-          // });
-          // </script>
-
-          </p>
+        <p><%= link_to user.name, user_path(user) %></br>
+        [最終ログイン]<%= user.current_sign_in_at.strftime('%-m/%-d %-H:%-M') %>
+        <%= render 'tasks/chart', tasks: user.tasks, user: user  %>
+        </p>
       <% end %>
 	</div>
 	<div class="col-lg-7">
@@ -75,17 +46,17 @@
     <% end %>
 	</div>
 	<div class="col-lg-3">
-	<h3 class="text-white mt-5">ルームチャット</h3>
-	<div class="bg-light py-4 px-4">
-    <%= form_with model: @chat, url:chats_path, method: :post, local: true do |f| %>
+  	<h3 class="text-white mt-5">ルームチャット</h3>
+  	<div class="bg-light py-4 px-4">
+      <%= form_with model: @chat, url:chats_path, method: :post, local: true do |f| %>
         <%= f.text_field :content, class: "form-control", placeholder: "チャット" %>
         <%= f.hidden_field :room_id %>
-    <% end %>
-	  <% @chats.each do |chat| %>
-      [<%= chat.user.name %>]
-      <%= chat.content %></br>
-    <% end %>
-	</div>
+      <% end %>
+  	  <% @chats.each do |chat| %>
+        [<%= chat.user.name %>]
+        <%= chat.content %></br>
+      <% end %>
+  	</div>
 	</div>
 
 </div>

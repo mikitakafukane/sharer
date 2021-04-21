@@ -1,10 +1,8 @@
 class TasksController < ApplicationController
 
   def index
-    # @tasks = Task.where(user_id: current_user.id)
-    # @tasks = Task.all.includes(:user)
-    @task = Task.new
-    @q = Task.ransack(params[:q])
+    @task  = Task.new
+    @q     = Task.ransack(params[:q])
     @tasks = @q.result(distinct: true)
                .where(user_id: current_user.id)
   end
@@ -36,9 +34,9 @@ class TasksController < ApplicationController
   end
 
   def done
-    @task = Task.find(params[:id])
-    @task.update(status: "完了")
     @tasks = Task.all.includes(:user)
+    @task  = Task.find(params[:id])
+    @task.update(status: "完了")
   end
 
   private
