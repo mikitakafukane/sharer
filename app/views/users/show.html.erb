@@ -1,4 +1,4 @@
-<h2 class="text-white">ユーザーページ</h2>
+<h2 class="text-white"><%= @user.name %>のユーザーページ</h2>
   <div class="row">
     <div class="col-lg-2 bg-light py-3 px-3 mx-3">
   		<div class="row px-3">
@@ -44,41 +44,7 @@
 			</table>
 	   </div>
 
-		<div class="col-lg-3 bg-light py-3 px-3 mr-3">
-			<h4>投稿/いいね/コメントした</h4>
-			<% @posts.each do |post| %>
-			  <hr>
-			  <p><span>投稿: </span><%=link_to post.content, post_path(post.id) %></p>
-			<% end %>
-			<% @like_posts.each do |post| %>
-			  <hr>
-			  <p><span>いいね: </span><%=link_to post.content, post_path(post.id) %></p>
-			<% end %>
-			<% @comment_posts.each do |post| %>
-			  <hr>
-			  <p><span>コメント: </span><%=link_to post.content, post_path(post.id) %></p>
-			<% end %>
-		</div>
-
-		<div class="col-lg-3 bg-light py-3 px-3 mr-3">
-			<h4>投稿/いいね/コメントされた</h4>
-
-		</div>
-
-	  	<div class="col-lg-4 bg-light py-3 mx-3 mt-3">
-		  <h4>タスク進捗状況</h4>
-	     <%= render 'tasks/chart', tasks: @tasks, user: @user %>
-		</div>
-
-		<div class="col-lg-7 bg-light py-3 px-3 mt-3">
-			<div class="row px-3">
-			    <h4>タスク一覧</h4>
-				<p class="ml-auto"><%= link_to "新規作成", new_task_path, class: "btn btn-warning ml-3" %></p>
-	  		</div>
-		  <%= render 'tasks/task', tasks: @tasks %>
-		</div>
-
-		<div class="col-lg-4 bg-light py-3 mx-3 mt-3">
+		<div class="col-lg-6 bg-light py-3">
 		  <h4>所属グループチャット状況</h4>
 		  <table class="table">
 		  	<tr>
@@ -96,5 +62,46 @@
 		  	</tr>
 		  <% end %>
 		  </table>
+		</div>
+
+	  	<div class="col-lg-4 bg-light py-3 mx-3 mt-3">
+		  <h4>タスク進捗状況</h4>
+	     <%= render 'tasks/chart', tasks: @tasks, user: @user %>
+		</div>
+
+		<div class="col-lg-7 bg-light py-3 px-3 mt-3">
+			<div class="row px-3">
+			    <h4>タスク一覧</h4>
+				<p class="ml-auto"><%= link_to "新規作成", new_task_path, class: "btn btn-warning ml-3" %></p>
+	  		</div>
+		  <%= render 'tasks/task', tasks: @tasks %>
+		</div>
+
+		<div class="col-lg-5 bg-light py-3 px-3 mx-3 mt-3">
+			<h4>投稿・いいね・コメント一覧</h4>
+			<% @posts.each do |post| %>
+			  <hr>
+			  <%= @user.name %>さんが<%=link_to post.content, post_path(post.id) %>を投稿しました！
+			<% end %>
+			<% @like_posts.each do |post| %>
+			  <hr>
+			  <%= @user.name %>さんが<%=link_to post.content, post_path(post.id) %>にいいねしました！
+			<% end %>
+			<% @comment_posts.each do |post| %>
+			  <hr>
+			  <%= @user.name %>さんが<%=link_to post.content, post_path(post.id) %>にコメントしました！
+			<% end %>
+		</div>
+
+		<div class="col-lg-6 bg-light py-3 px-3 mt-3">
+			<h4>いいね・コメントされた投稿一覧</h4>
+			<% @like_posts.each do |post| %>
+			  <hr>
+			  <%= post.user.name %>さんが<%=link_to post.content, post_path(post.id) %>にいいねしました！
+			<% end %>
+			<% @comment_posts.each do |post| %>
+			  <hr>
+			  <%= post.user.name %>さんが<%=link_to post.content, post_path(post.id) %>にコメントしました！
+			<% end %>
 		</div>
   </div>
