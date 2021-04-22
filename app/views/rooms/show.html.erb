@@ -5,7 +5,7 @@
 　　<% @room.users.each do |user| %>
 　　<hr>
       <p><%= link_to user.name, user_path(user) %></br>
-      [最終ログイン]<%= user.current_sign_in_at.strftime('%-m/%-d %-H:%-M') %>
+      [最終ログイン]<%= user.current_sign_in_at.strftime('%-m月%-d日 %-H:%-M') %>
       <%= render 'tasks/chart', tasks: user.tasks, user: user  %>
       </p>
     <% end %>
@@ -51,11 +51,7 @@
         <%= f.text_field :content, class: "form-control", placeholder: "チャット" %>
         <%= f.hidden_field :room_id %>
       <% end %>
-  	  <% @chats.each do |chat| %>
-        [<%= chat.user.name %>]
-        <%= chat.created_at.strftime('%-m月%-d日 %-H時%-M分') %></br>
-        <%= chat.content %></br>
-      <% end %>
+  	  <%= render 'chats/show', chats: @chats, user: @user %>
   	</div>
 	</div>
 

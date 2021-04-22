@@ -1,0 +1,22 @@
+<% chats.each do |chat| %>
+  <table>
+    <tr>
+      <td rowspan="2"><%= attachment_image_tag user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
+      <td>
+        <b><%= chat.user.name %></b>
+        <%= chat.created_at.strftime('%-m月%-d日 %-H:%-M') %>
+        <% if chat.user == current_user %>
+          <%= link_to "削除", chat, method: :delete, data: { confirm: "チャット「#{chat.content}」を削除します。よろしいですか？" } %></td>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="text-info">ルーム：<%= chat.room.name %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= chat.content %></td>
+    </tr>
+    <hr>
+  </table>
+<% end %>

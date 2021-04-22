@@ -46,22 +46,8 @@
 
 		<div class="col-lg-6 bg-light py-3">
 		  <h4>所属グループチャット状況</h4>
-		  <table class="table">
-		  	<tr>
-		  		<th>ルーム</th>
-		  		<th>名前</th>
-		  		<th>内容</th>
-		  		<th>時間</th>
-		  	</tr>
-		  <% @chats.each do |chat| %>
-		  	<tr>
-		  		<td><%= chat.room.name %></td>
-		  		<td><%= chat.user.name %></td>
-		  		<td><%= chat.content %></td>
-		  		<td><%= chat.created_at.strftime('%-m月%-d日 %-H時%-M分') %></td>
-		  	</tr>
-		  <% end %>
-		  </table>
+		  
+  	  <%= render 'chats/show', chats: @chats, user: @user %>
 		</div>
 
 	  	<div class="col-lg-4 bg-light py-3 mx-3 mt-3">
