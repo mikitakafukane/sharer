@@ -46,11 +46,10 @@
 
 		<div class="col-lg-6 bg-light py-3">
 		  <h4>所属グループチャット状況</h4>
-		  
   	  <%= render 'chats/show', chats: @chats, user: @user %>
 		</div>
 
-	  	<div class="col-lg-4 bg-light py-3 mx-3 mt-3">
+	  <div class="col-lg-4 bg-light py-3 mx-3 mt-3">
 		  <h4>タスク進捗状況</h4>
 	     <%= render 'tasks/chart', tasks: @tasks, user: @user %>
 		</div>

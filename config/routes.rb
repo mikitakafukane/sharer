@@ -12,7 +12,7 @@ mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   end
   resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
   post '/tasks/:id/done' => 'tasks#done',   as: 'done'
-  resources :events
+  resources :events, only: [:index, :create, :edit, :update, :destroy]
   resources :rooms
 
   root 'homes#top'

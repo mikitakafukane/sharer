@@ -31,7 +31,7 @@
             <li class="media">
               <%= attachment_image_tag comment.user, :image, :fill, 40, 40, fallback: "no_image.jpg" %>
               <%= comment.user.name %>
-              <%= comment.created_at.strftime('%m月%d日 %H時%M分') %></br>
+              <%= comment.created_at.strftime('%-m月%-d日 %-H時%-M分') %></br>
               <%= comment.content %>
             </li>
           </ul>

@@ -23,7 +23,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr class="info">
-          <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg" %></th>
+          <th><%= attachment_image_tag user, :image, :fill, 40, 40, fallback: "no_image.jpg", size: '50x50' %></th>
           <th><%=link_to user.name, user_path(user) %></th>
           <th><%= user.current_sign_in_at.strftime('%-m月%-d日 %-H時%-M分') %></th>
           <th><%= user.email %></th>
