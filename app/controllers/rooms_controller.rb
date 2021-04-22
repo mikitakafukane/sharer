@@ -2,11 +2,8 @@ class RoomsController < ApplicationController
 # layout 'room', except: [:index, :new]
 
   def index
+    @room  = Room.new
     @rooms = Room.all.order(updated_at: :desc)
-  end
-
-  def new
-    @room = Room.new
   end
 
   def create
@@ -20,10 +17,13 @@ class RoomsController < ApplicationController
 
   def show
     @room     = Room.find(params[:id])
+    
     @post     = Post.new
     @posts    = Post.where(user_id: @room.users.ids)
+    
     @chat     = Chat.new(room_id: @room.id)
     @chats    = @room.chats
+    
     @comment  = Comment.new
     @comments = @post.comments
   end

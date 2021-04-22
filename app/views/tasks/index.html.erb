@@ -8,13 +8,12 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-4 pt-3">
+  <div class="col-lg-4">
     <div class="py-4 px-4 bg-light">
     <h4>タスク登録</h4>
       <%= render 'form', task: @task %>
     </div>
     <div class="bg-light py-3 px-4 mt-3">
-      
 		  <h4>タスク進捗状況</h4>
 		  <canvas id="myPieChart"></canvas>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -46,7 +45,8 @@
     </div>
 	</div>
 
-  <div class="col-lg-7 py-4 px-4 bg-light mt-3">
+  <div class="col-lg-7 py-4 px-4 bg-light">
+    <h4>タスク一覧</h4>
     <%= render 'task', tasks: @tasks %>
   </div>
 </div>

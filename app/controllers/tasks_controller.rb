@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     task.update(task_params)
-    redirect_to request.referer, notice: "タスクを変更しました"
+    redirect_to tasks_path, notice: "タスクを変更しました"
   end
 
   def destroy
