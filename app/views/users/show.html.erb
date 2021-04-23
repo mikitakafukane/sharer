@@ -80,7 +80,7 @@
 			<% @like_posts.each do |post| %>
 			  <hr>
 			  <%= @user.name %>さんが<%=link_to post.content, post_path(post.id) %>にいいねしました！
-			  
+
 			<% end %>
 			<% @comment_posts.each do |post| %>
 			  <hr>
@@ -90,13 +90,13 @@
 
 		<div class="col-lg-4 bg-light py-3 px-3 mt-3">
 			<h4>いいね・コメントされた投稿一覧</h4>
-			<% @like_posts.each do |post| %>
-			  <hr>
-			  <%= post.user.name %>さんが<%=link_to post.content, post_path(post.id) %>にいいねしました！
-			<% end %>
-			<% @comment_posts.each do |post| %>
-			  <hr>
-			  <%= post.user.name %>さんが<%=link_to post.content, post_path(post.id) %>にコメントしました！
-			<% end %>
+			<!--< @likes.each do |like| %>-->
+
+			<!--  <=like.user.name %>-->
+			<!--< end %>-->
+			<%#<% @comment_posts.each do |post| %>
+
+			  <%#<%= post.user.name %>さんが<%#<%=link_to post.content, post_path(post.id) %>にコメントしました！
+			<%#<% end %>
 		</div>
   </div>

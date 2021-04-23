@@ -26,10 +26,15 @@
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
         <%= post.content %>
+        <hr>
         <div id="like-btn-<%= post.id %>">
           <%= render 'likes/like', post: post %>
           <%= "コメント数:#{post.comments.count}" %>
         </div>
+        <div class="my-2"><%= form_with model: [post, @comment], local: true do |f| %>
+          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
+          <%= f.hidden_field :user_id %>
+        </div><% end %>
         <% post.comments.each do |comment| %>
           <ul class="media-list">
             <li class="media">
@@ -39,11 +44,6 @@
               <%= comment.content %>
             </li>
           </ul>
-        <% end %>
-        <%= form_with model: [post, @comment], local: true do |f| %>
-          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
-          <%= f.hidden_field :user_id %>
-          <%= f.submit "コメントする", class: "btn btn-info mt-2" %>
         <% end %>
       </div>
     <% end %>

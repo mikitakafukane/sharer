@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    attributes:
+          user:
+            name: 名前
+
+          room:
+            name: ルーム名
+            
+          task:
+            title: タスク名
+
+          event:
+            title: イベント
+            
+          contact:
+            name:    名前
+            email:   メールアドレス
+            content: 内容
+            

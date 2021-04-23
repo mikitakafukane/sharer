@@ -7,6 +7,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="flash">
+          <% flash.each do |key, value| %>
+            <div class="<%= key %>">
+              <%= value %>
+              </div>
+          <% end %>
+        </div>
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item"><%= link_to "掲示板", posts_path, class: "nav-link"  %></li>

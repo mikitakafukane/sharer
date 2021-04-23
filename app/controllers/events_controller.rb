@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @event = Event.new
     @events = Event.all
@@ -8,8 +10,13 @@ class EventsController < ApplicationController
   end
   
   def create
-    Event.create(event_params)
-    redirect_to events_path
+    @events = Event.all
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to events_path
+    else
+      render :index
+    end
   end
   
   def edit
@@ -17,9 +24,13 @@ class EventsController < ApplicationController
   end
   
   def update
-    event = Event.find(params[:id])
-    event.update!(event_params)
-    redirect_to events_path, notice: "イベントを変更しました"
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to events_path, notice: "イベントを変更しました"
+    else
+      render :edit
+    end
+    
   end
   
   def destroy

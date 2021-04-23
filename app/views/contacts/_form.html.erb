@@ -1,18 +1,8 @@
+  <%= render "layouts/error_messages", resource: @contact %>
 <h2 class="text-white">お問い合わせ</h2>
 <div class="py-4 px-4 bg-light">
   
 <%= form_with(model: contact, local: true) do |form| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-      <% contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 <table>
   
   <tr class="field">

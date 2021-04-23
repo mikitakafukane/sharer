@@ -15,10 +15,17 @@ class PostsController < ApplicationController
   end
 
   def create
+    @q     = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+               .order("created_at DESC")
+               .page(params[:page])
+               .per(5)
+    @comment  = Comment.new
+    
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to request.referer
+      redirect_to request.referer
   end
   
   def show

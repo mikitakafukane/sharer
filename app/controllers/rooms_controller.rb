@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
 # layout 'room', except: [:index, :new]
 
   def index
@@ -7,11 +8,12 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
-    if @room.save!
+    @rooms = Room.all.order(updated_at: :desc)
+    @room  = Room.new(room_params)
+    if @room.save
       redirect_to @room, notice: 'ルームを作成しました'
     else
-      render :new
+      render :index
     end
   end
 

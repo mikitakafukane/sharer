@@ -18,25 +18,11 @@
         <%= post.content %>
         <div id="like-btn-<%= post.id %>">
           <%= render 'likes/like', post: post %>
-          <%= "コメント数:#{post.comments.count}" %>
         </div>
-        <% post.comments.each do |comment| %>
-          <ul class="media-list">
-            <li class="media">
-              <%= attachment_image_tag comment.user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %>
-              <%= comment.user.name %>
-              <%= comment.created_at.strftime('%m月%d日 %H時%M分') %></br>
-              <%= comment.content %>
-            </li>
-          </ul>
-        <% end %>
-
-        <%= form_with model: [post, @comment], local: true do |f| %>
-          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
-          <%= f.hidden_field :user_id %>
-          <%= f.submit "コメントする", class: "btn btn-info mt-2" %>
-        <% end %>
-
+        <div id="comments_area">
+          <%= render 'comments/form', { post: post, comment: @comment } %>
+          <%= render 'comments/index', post: post %>
+        </div>
       </div>
     <% end %>
 

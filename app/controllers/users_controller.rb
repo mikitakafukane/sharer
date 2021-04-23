@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @q     = User.ransack(params[:q])
     @users = @q.result(distinct: true)
@@ -9,16 +11,21 @@ class UsersController < ApplicationController
   def show
     @user  = User.find(params[:id])
     @rooms = @user.rooms
-    
+
     @task  = Task.find(params[:id])
     @tasks = @user.tasks
-    
+
     @posts         = @user.posts
     @like_posts    = @user.like_posts
     @comment_posts = @user.comment_posts
     
+    # @like_users = @post.like_users
+    # @likes = Like.where(user_id: @user.id)
+    # @post = Post.find_by(post_id: @like_post, user_id: @user.id)
+    
     @chat_rooms = current_user.belongings.pluck(:room_id)
     @chats      = Chat.where(room_id: @chat_rooms)
+                      .order("created_at DESC")
   end
 
   def edit

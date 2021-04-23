@@ -5,4 +5,5 @@ class Room < ApplicationRecord
   
   accepts_nested_attributes_for :belongings
   
+  validates :name, presence: true
 end
