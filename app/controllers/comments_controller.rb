@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @post    = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
@@ -11,12 +11,11 @@ class CommentsController < ApplicationController
     end
   end
 
-  def destory
-    @post    = Post.find(params[:post_id])
-    @comment = @article.comments.find(params[:id])
-    @comment.user_id = current_user.id
+  def destroy
+    @comment = Comment.find(params[:id])
     if @comment.destroy
-      render :index
+      # render
+      redirect_to request.referer
     end
   end
 

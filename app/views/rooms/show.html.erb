@@ -25,23 +25,32 @@
     </div>
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
-        <%= post.content %>
+        <p><%= post.content %></p>
+        <p class="text-right">
+          <%= post.created_at.strftime('%-m月%-d日 %-H:%M') %>
+          <%if post.user_id == current_user.id %>
+            <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "投稿「#{post.content}」を削除します。よろしいですか？" } %>
+          <% end %>
+        </p>
         <hr>
         <div id="like-btn-<%= post.id %>">
           <%= render 'likes/like', post: post %>
           <%= "コメント数:#{post.comments.count}" %>
         </div>
-        <div class="my-2"><%= form_with model: [post, @comment], local: true do |f| %>
-          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
-          <%= f.hidden_field :user_id %>
-        </div><% end %>
+        <div class="my-2">
+          <%= form_with model: [post, @comment], local: true do |f| %>
+            <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
+            <%= f.hidden_field :user_id %>
+          <% end %>
+        </div>
         <% post.comments.each do |comment| %>
           <ul class="media-list">
             <li class="media">
               <%= attachment_image_tag comment.user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %>
               <%= comment.user.name %>
-              <%= comment.created_at.strftime('%-m月%-d日 %-H:%-M') %></br>
+              <%= comment.created_at.strftime('%-m月%-d日 %-H:%M') %></br>
               <%= comment.content %>
+              <%= link_to "削除", post_comment_path(comment), method: :delete, data: { confirm: "コメント「#{comment.content}」を削除します。よろしいですか？" } %></td>
             </li>
           </ul>
         <% end %>
