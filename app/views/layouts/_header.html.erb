@@ -7,11 +7,11 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <div class="flash">
+        <div class="flash ml-auto">
           <% flash.each do |key, value| %>
-            <div class="<%= key %>">
+            <div class="alert alert-<%= key %>">
               <%= value %>
-              </div>
+            </div>
           <% end %>
         </div>
         <ul class="navbar-nav ml-auto">

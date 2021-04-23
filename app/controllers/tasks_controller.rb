@@ -18,7 +18,8 @@ class TasksController < ApplicationController
                .where(user_id: current_user.id)
     @task = Task.new(task_params)
     if @task.save
-      redirect_to request.referer, notice: "タスクを登録しました"
+      flash[:success] = "タスクを登録しました"
+      redirect_to request.referer
     else
       render :index
     end
@@ -31,7 +32,8 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "タスクを変更しました"
+      flash[:success] = "タスクを登録しました"
+      redirect_to tasks_path
     else
       render :edit
     end
@@ -40,7 +42,8 @@ class TasksController < ApplicationController
   def destroy
     task = Task.find(params[:id])
     task.destroy
-    redirect_to request.referer, notice: "タスク「#{task.title}」を削除しました"
+    flash[:danger] = "タスク「#{task.title}」を削除しました"
+    redirect_to request.referer
   end
 
   def done

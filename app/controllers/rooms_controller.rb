@@ -11,7 +11,8 @@ class RoomsController < ApplicationController
     @rooms = Room.all.order(updated_at: :desc)
     @room  = Room.new(room_params)
     if @room.save
-      redirect_to @room, notice: 'ルームを作成しました'
+      flash[:success] = "ルームを作成しました"
+      redirect_to @room
     else
       render :index
     end
