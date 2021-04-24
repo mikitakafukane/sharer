@@ -18,11 +18,9 @@ class UsersController < ApplicationController
     @posts         = @user.posts
     @like_posts    = @user.like_posts
     @comment_posts = @user.comment_posts
-    
-    # @like_users = @post.like_users
-    # @likes = Like.where(user_id: @user.id)
-    # @post = Post.find_by(post_id: @like_post, user_id: @user.id)
-    
+    @liked_posts = Like.where(post_id: @posts.pluck(:id))
+    @commented_posts = Comment.where(post_id: @posts.pluck(:id))
+
     @chat_rooms = current_user.belongings.pluck(:room_id)
     @chats      = Chat.where(room_id: @chat_rooms)
                       .order("created_at DESC")
