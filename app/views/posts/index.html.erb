@@ -18,11 +18,11 @@
         <%= render 'posts/index', post: post %>
         <div class="d-flex">
           <p id="like-btn-<%= post.id %>"><%= render 'likes/like', post: post %></p>
-          <%= "コメント数:#{post.comments.count}" %>
+          <p id="comments-count"><%= "コメント数:#{post.comments.count}" %></p>
         </div>
-        <div id="comments_area">
-          <%= render 'comments/form', { post: post, comment: @comment } %>
-          <%= render 'comments/index', post: post %>
+        <div>
+          <p><%= render 'comments/form', { post: post, comment: @comment } %></p>
+          <p id="comments_area"><%= render 'comments/index', post: post %></p>
         </div>
       </div>
     <% end %>

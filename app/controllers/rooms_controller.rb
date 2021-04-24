@@ -4,12 +4,11 @@ class RoomsController < ApplicationController
 
   def index
     @room  = Room.new
-    @rooms = Room.all.order(updated_at: :desc)
-    
+    @rooms = current_user.rooms
   end
 
   def create
-    @rooms = Room.all.order(updated_at: :desc)
+    @rooms = Room.all
     @room  = Room.new(room_params)
     if @room.save
       flash[:success] = "ルームを作成しました"
@@ -21,13 +20,13 @@ class RoomsController < ApplicationController
 
   def show
     @room     = Room.find(params[:id])
-    
+
     @post     = Post.new
     @posts    = Post.where(user_id: @room.users.ids)
-    
+
     @chat     = Chat.new(room_id: @room.id)
     @chats    = @room.chats
-    
+
     @comment  = Comment.new
     @comments = @post.comments
   end

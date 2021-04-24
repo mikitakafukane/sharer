@@ -5,19 +5,15 @@ class CommentsController < ApplicationController
     @post    = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
+    @comment.save
     redirect_to request.referer
-      # render :index
-    end
   end
 
   def destroy
     @post    = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    if @comment.destroy
-      # render
-      redirect_to request.referer
-    end
+    @comment.destroy
+    redirect_to request.referer
   end
 
   private
