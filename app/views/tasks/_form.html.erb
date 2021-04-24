@@ -8,10 +8,10 @@
       <td><%= f.label :詳細（任意） %></td>
       <td><%= f.text_area :description, class: "form-control" %></td>
     </tr>
-    <tr>
-      <td><%= f.label :期限（任意） %></td>
-      <td><%= f.date_select :end_date, {}, { class: "form-control", style: "display: inline-block;width: auto;" } %></td>
-    </tr>
+    <!--<tr>-->
+    <!--  <td><= f.label :期限（任意） %></td>-->
+    <!--  <td><= f.date_select :end_date, {}, { class: "form-control", style: "display: inline-block;width: auto;" } %></td>-->
+    <!--</tr>-->
     <tr>
       <td><%= f.label :ステータス %></td>
       <td><%= f.select :status, ["未完了","完了"], {},{class: "form-control"} %></td>

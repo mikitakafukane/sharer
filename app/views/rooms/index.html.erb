@@ -1,25 +1,26 @@
-<h2 class="text-white">ルーム一覧</h2>
-	<div class="py-4 px-4 bg-light">
-
-  <%= link_to "ルーム作成", new_room_path, class: "btn btn-success mb-3" %>
-
-    <table class= "table table-hover">
-      <thead class= "thead-default">
+<%= render "layouts/error_messages", resource: @room %>
+<h2 class="text-white">ルーム</h2>
+<div class="row">
+	<div class="col-lg-5 bg-light py-4 px-4 mx-3">
+	  <h4>ルーム新規作成</h4>
+    <%= render 'form', room: @room %>
+  </div>
+  <div class="col-lg-5 bg-light py-4 px-4">
+    <h4>参加ルーム一覧</h4>
+    <table class= "table">
         <tr>
           <th>ルーム名</th>
           <th></td>
         </tr>
-      </thead>
-      <tbody>
-      <% @rooms.each do |room| %>
-        <tr>
-          <td><%= room.name %></td>
-          <td>
-            <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
-            <%= link_to "詳細", room_path(room), class: "btn btn-warning" %>
-          </td>
-        </tr>
-      <%  end %>
-      </tbody>
+        <% @rooms.each do |room| %>
+            <tr>
+              <td><%= room.name %></td>
+              <td>
+                <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
+                <%= link_to "詳細", room_path(room), class: "btn btn-warning" %>
+              </td>
+            </tr>
+        <% end %>
     </table>
   </div>
+</div>

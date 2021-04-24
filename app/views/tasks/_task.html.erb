@@ -1,31 +1,91 @@
-<table class= "table">
-  <thead class= "thead-default">
-    <tr>
-      <th>タスク</th>
-      <th>完了日時</th>
-      <th>ステータス</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% tasks.each do |task| %>
-    <tr>
-      <td><%= task.title %></td>
-      <td>
-        <% if task.status == "完了" %>
-          <%= task.updated_at.strftime('%-Y年%-m月%-d日 %-H時%-M分') %>
-        <% end %>
-      </td>
-      <% if task.user_id == current_user.id %>
-      <td id="task<%= task.id %>"><%= task.status %></td>
-        <td>
-          <%= link_to '完了', done_path(task), method: :post, remote: true, class: "btn btn-warning" %>
-          <%= link_to "編集", edit_task_path(task), class: "btn btn-primary" %>
-          <%= link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %></td>
-        </td>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="not_done-tab" data-bs-toggle="tab" href="#not_done" role="tab" aria-controls="not_done" aria-selected="true">未完了</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="done-tab" data-bs-toggle="tab" href="#done" role="tab" aria-controls="done" aria-selected="false">完了</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="not_done" role="tabpanel" aria-labelledby="not_done-tab">
+  <table class= "table">
+    <thead class= "thead-default">
+      <tr>
+        <th>タスク</th>
+        <th>完了日時</th>
+        <th>ステータス</th>
+        <th rowspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% tasks.each do |task| %>
+      <% if task.status == "未完了" %>
+        <tr>
+          <% if task.user_id == current_user.id %>
+            <td style="width:35%"><%= task.title %></td>
+            <td style="width:20%" rowspan="2">
+              <% if task.status == "完了" %>
+                <%= task.updated_at.strftime('%-m月%-d日 %-H時%-M分') %>
+              <% end %>
+            </td>
+            <td style="width:20%" rowspan="2" id="task<%= task.id %>"><%= task.status %></td>
+            <td style="width:25%" rowspan="2">
+              <%= link_to '完了', done_path(task), method: :post, remote: true, class: "btn btn-success" %>
+              <%= link_to "編集", edit_task_path(task), class: "btn btn-primary" %>
+              <%= link_to "削除", task_path(task), method: :delete, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %></td>
+            </td>
+          <% else %>
+            <td style="width:45%"><%= task.title %></td>
+            <td style="width:35%" rowspan="2">
+              <% if task.status == "完了" %>
+                <%= task.updated_at.strftime('%-m月%-d日 %-H時%-M分') %>
+              <% end %>
+            </td>
+            <td style="width:20%" rowspan="2" id="task<%= task.id %>"><%= task.status %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td style="border:none;"  class="text-info"><%= task.description %></td>
+        </tr>
       <% end %>
-    </tr>
-  <%  end %>
-
-  </tbody>
-</table>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class="tab-pane fade" id="done" role="tabpanel" aria-labelledby="done-tab">
+    <table class= "table">
+      <thead class= "thead-default">
+        <tr>
+          <th>タスク</th>
+          <th>完了日時</th>
+          <th>ステータス</th>
+          <th rowspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% tasks.each do |task| %>
+        <% if task.status == "完了" %>
+          <tr>
+            <% if task.user_id == current_user.id %>
+              <td style="width:35%"><%= task.title %></td>
+              <td style="width:20%" rowspan="2"><%= task.updated_at.strftime('%-m月%-d日 %-H時%-M分') %></td>
+              <td style="width:20%" rowspan="2" id="task<%= task.id %>"><%= task.status %></td>
+              <td style="width:25%" rowspan="2">
+                <%= link_to "編集", edit_task_path(task), class: "btn btn-primary" %>
+                <%= link_to "削除", task_path(task), method: :delete, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger" %></td>
+              </td>
+            <% else %>
+              <td style="width:45%"><%= task.title %></td>
+              <td style="width:35%" rowspan="2"><%= task.updated_at.strftime('%-m月%-d日 %-H時%-M分') %></td>
+              <td style="width:20%" rowspan="2" id="task<%= task.id %>"><%= task.status %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td style="border:none;" class="text-info"><%= task.description %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

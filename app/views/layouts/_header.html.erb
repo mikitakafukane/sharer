@@ -1,11 +1,19 @@
 <header>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
+      <%= image_tag 'logo_transparent2', size: '35x35' %>
       <h3><%= link_to "Sharer", root_path %></h3>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="flash ml-auto">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+          <% end %>
+        </div>
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item"><%= link_to "掲示板", posts_path, class: "nav-link"  %></li>
@@ -13,8 +21,6 @@
             <li class="nav-item"><%= link_to "カレンダー", events_path, class: "nav-link"  %></li>
             <li class="nav-item"><%= link_to "ユーザー", users_path, class: "nav-link"  %></li>
             <li class="nav-item"><%= link_to "ルーム", rooms_path, class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "通知", "", class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "ルーム作成", new_room_path, class: "nav-link"  %></li>
             <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "nav-link"  %></li>
             <li class="nav-item"><%= link_to "お問い合わせ", new_contact_path, class: "nav-link"  %></li>
             <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"  %></li>

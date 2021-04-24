@@ -1,7 +1,15 @@
-<div class="py-4 px-4 bg-light">
-  <div>
-    <h1>Shererしよ？</h1>
-    <p>Shererは学習のモチベーションを上げるための進捗共有サイトです。</p>
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+<div class="row bg-white">
+  <div class="col-lg-6">
+    
+    <%= image_tag 'logo', size: '800x800' %>
+  </div>
+  <div class="col-lg-6 bg-light d-flex align-items-center">
+    <div class="mx-auto">
+      <div class="d-flex flex-column">
+      <h1>Shererしよ？</h1>
+      <p>Shererは学習のモチベーションを上げるための進捗共有サイトです。</p>
+      <p><%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %></p>
+      </div>
+    </div>
   </div>
 </div>

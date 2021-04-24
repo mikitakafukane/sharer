@@ -15,32 +15,15 @@
 
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
-        <%= post.content %>
-        <div>
-          <% if post.liked_by?(current_user) %>
-              <%=link_to "いいね:#{post.likes.count}", post_likes_path(post.id), method: :delete %>
-          <% else %>
-              <%=link_to "いいね:#{post.likes.count}", post_likes_path(post.id), method: :post %>
-          <% end %>
-          <%= "コメント数:#{post.comments.count}" %>
+        <%= render 'posts/index', post: post %>
+        <div class="d-flex">
+          <p id="like-btn-<%= post.id %>"><%= render 'likes/like', post: post %></p>
+          <p id="comments-count"><%= "コメント数:#{post.comments.count}" %></p>
         </div>
-        <% post.comments.each do |comment| %>
-          <ul class="media-list">
-            <li class="media">
-              <%= attachment_image_tag comment.user, :image, :fill, 40, 40, fallback: "no_image.jpg" %>
-              <%= comment.user.name %>
-              <%= comment.created_at.strftime('%m月%d日 %H時%M分') %></br>
-              <%= comment.content %>
-            </li>
-          </ul>
-        <% end %>
-
-        <%= form_with model: [post, @comment], local: true do |f| %>
-          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
-          <%= f.hidden_field :user_id %>
-          <%= f.submit "コメントする", class: "btn btn-info mt-2" %>
-        <% end %>
-
+        <div>
+          <p><%= render 'comments/form', { post: post, comment: @comment } %></p>
+          <p id="comments_area"><%= render 'comments/index', post: post %></p>
+        </div>
       </div>
     <% end %>
 

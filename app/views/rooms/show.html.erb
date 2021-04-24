@@ -1,58 +1,51 @@
 <div class="row">
 	<div class="sidebar col-lg-2">
-    <h2 class="text-white">ルーム：<%= @room.name %> </h2>
-  	<%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-primary" %>
-  	<%= link_to "ユーザー追加除外", room_belongings_index_path(@room), class: "btn btn-success" %>
-  	<p>ルームメンバー</p>
-  　　<% @room.users.each do |user| %>
-          <p><%= link_to user.name, user_path(user) %></br>
-          [最終ログイン]<%= user.current_sign_in_at.strftime('%-m/%-d %-H:%-M') %>
-          <%= render 'tasks/chart', tasks: @tasks %>
-          </p>
-      <% end %>
+    <h2 class="text-white">ルーム</br><%= @room.name %> </h2>
+  	<%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-dark" %>
+　　<% @room.users.each do |user| %>
+　　<hr>
+      <p><%= link_to user.name, user_path(user) %></br>
+      [最終ログイン]<%= user.current_sign_in_at.strftime('%-m月%-d日 %-H:%M') %>
+      <%= render 'tasks/chart', tasks: user.tasks, user: user  %>
+      </p>
+    <% end %>
 	</div>
-	<div class="col-lg-7">
-    <div class="py-4 px-4 bg-light mt-5">
+	<div class="col-lg-6">
+	  <!--<div class="row">-->
+      <h3 class="text-white mt-5">ルームメンバーの投稿一覧</h3>
+   <!--   <div class="col-lg-8 form-inline">-->
+   <!--     <= search_form_for @q do |f| %>-->
+   <!--       <= f.search_field :content_cont, class: "form-control", placeholder: "投稿で検索" %>-->
+   <!--       <= f.submit "検索", class: "btn btn-light" %>-->
+   <!--     < end %>-->
+   <!--   </div>-->
+   <!-- </div>-->
+    <div class="py-4 px-4 bg-light">
       <%= render "posts/form", post: @post %>
     </div>
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
-        <%= post.content %>
-        <div>
-          <% if post.liked_by?(current_user) %>
-              <%=link_to "いいね:#{post.likes.count}", post_likes_path(post.id), method: :delete %>
-          <% else %>
-              <%=link_to "いいね:#{post.likes.count}", post_likes_path(post.id), method: :post %>
-          <% end %>
+        <%= render 'posts/index', post: post %>
+        <div class="d-flex">
+          <p id="like-btn-<%= post.id %>"><%= render 'likes/like', post: post %></p>
           <%= "コメント数:#{post.comments.count}" %>
         </div>
-        <% post.comments.each do |comment| %>
-          <ul class="media-list">
-            <li class="media">
-              <%= attachment_image_tag comment.user, :image, :fill, 40, 40, fallback: "no_image.jpg" %>
-              <%= comment.user.name %>
-              <%= comment.created_at.strftime('%m月%d日 %H時%M分') %></br>
-              <%= comment.content %>
-            </li>
-          </ul>
-        <% end %>
-
-        <%= form_with model: [post, @comment], local: true do |f| %>
-          <%= f.text_field :content, class: "form-control", placeholder: "コメントを入力" %>
-          <%= f.hidden_field :user_id %>
-          <%= f.submit "コメントする", class: "btn btn-info mt-2" %>
-        <% end %>
+        <div id="comments_area" class="my-2">
+          <%= render 'comments/form', { post: post, comment: @comment } %>
+          <%= render 'comments/index', post: post %>
+        </div>
       </div>
     <% end %>
 	</div>
-	<div class="col-lg-2 col-lg-offset-1 bg-light pt-3 mt-5">
-    <%= form_with model: @chat, url:chats_path, method: :post, local: true do |f| %>
+	<div class="col-lg-4">
+  	<h3 class="text-white mt-5">ルームチャット</h3>
+  	<div class="bg-light py-4 px-4">
+      <%= form_with model: @chat, url:chats_path, method: :post, local: true do |f| %>
         <%= f.text_field :content, class: "form-control", placeholder: "チャット" %>
         <%= f.hidden_field :room_id %>
-    <% end %>
-	  <% @chats.each do |chat| %>
-      [<%= chat.user.name %>]
-      <%= chat.content %></br>
-    <% end %>
+      <% end %>
+  	  <%= render 'chats/show', chats: @chats, user: @user %>
+  	</div>
 	</div>
+
 </div>

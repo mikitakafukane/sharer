@@ -1,0 +1,25 @@
+
+<%= form_with model: event, local: true do |f| %>
+  <table>
+    <tr>
+      <td><%= f.label :タイトル %></td>
+      <td><%= f.text_field :title, autofocus: true, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :詳細（任意） %></td>
+      <td><%= f.text_area :description, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :開始 %></td>
+      <td><%= f.datetime_select :start_date, {}, { class: "form-control", style: "display: inline-block;width: auto;" } %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :終了 %></td>
+      <td><%= f.datetime_select :end_date, {}, { class: "form-control", style: "display: inline-block;width: auto;" } %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "確定", class: "btn btn-success" %></td>
+      <td></td>
+    </tr>
+  </table>
+<% end %>
