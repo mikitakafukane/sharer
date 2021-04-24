@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @post  = Post.new
     @q     = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
+               .where(user_id: current_user.id)
                .order("created_at DESC")
                .page(params[:page])
                .per(5)
@@ -21,20 +22,20 @@ class PostsController < ApplicationController
                .page(params[:page])
                .per(5)
     @comment  = Comment.new
-    
+
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
     flash[:success] = "投稿"
     redirect_to request.referer
   end
-  
+
   def show
     @post     = Post.find(params[:id])
     @comment  = Comment.new
     @comments = @post.comments
   end
-  
+
 
   def destroy
     @post = Post.find(params[:id])

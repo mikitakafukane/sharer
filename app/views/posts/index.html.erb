@@ -16,6 +16,7 @@
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
         <%= post.content %>
+        <hr>
         <div id="like-btn-<%= post.id %>">
           <%= render 'likes/like', post: post %>
         </div>
