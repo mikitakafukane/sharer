@@ -69,29 +69,6 @@ ActiveRecord::Schema.define(version: 2021_04_20_111147) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer "visitor_id"
-    t.integer "visited_id"
-    t.integer "task_id"
-    t.integer "post_id"
-    t.integer "comment_id"
-    t.integer "like_id"
-    t.integer "chat_id"
-    t.integer "room_id"
-    t.string "action", default: "", null: false
-    t.boolean "checked", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_id"], name: "index_notifications_on_chat_id"
-    t.index ["comment_id"], name: "index_notifications_on_comment_id"
-    t.index ["like_id"], name: "index_notifications_on_like_id"
-    t.index ["post_id"], name: "index_notifications_on_post_id"
-    t.index ["room_id"], name: "index_notifications_on_room_id"
-    t.index ["task_id"], name: "index_notifications_on_task_id"
-    t.index ["visited_id"], name: "index_notifications_on_visited_id"
-    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "content", null: false

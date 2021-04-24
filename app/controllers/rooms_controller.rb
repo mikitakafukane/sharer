@@ -1,39 +1,39 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
 # layout 'room', except: [:index, :new]
 
   def index
-    @rooms = Room.all.order(updated_at: :desc)
-  end
-
-  def new
-    @room = Room.new
+    @room  = Room.new
+    @rooms = current_user.rooms
   end
 
   def create
-    @room = Room.new(room_params)
-    if @room.save!
-      redirect_to @room, notice: 'ルームを作成しました'
+    @rooms = Room.all
+    @room  = Room.new(room_params)
+    if @room.save
+      flash[:success] = "ルームを作成しました"
+      redirect_to @room
     else
-      render :new
+      render :index
     end
   end
 
   def show
-    @room = Room.find(params[:id])
-    @user = @room.users
-    # @tasks = Task.where(user_id: @room.users.ids)
-    @tasks = Task.where(user_id: current_user.id)
-    @posts = Post.where(user_id: @room.users.ids)
-    @post = Post.new
+    @room     = Room.find(params[:id])
+
+    @post     = Post.new
+    @posts    = Post.where(user_id: @room.users.ids)
+
+    @chat     = Chat.new(room_id: @room.id)
+    @chats    = @room.chats
+
+    @comment  = Comment.new
     @comments = @post.comments
-    @comment = Comment.new
-    @chats = @room.chats
-    @chat = Chat.new(room_id: @room.id)
   end
 
-  # def edit
-  #   @room = Room.find(params[:id])
-  # end
+  def edit
+    @room = Room.find(params[:id])
+  end
 
   def update
     room = Room.find(params[:id])

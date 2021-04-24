@@ -17,6 +17,8 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
       redirect_to contacts_path
+    else
+      render :new
     end
   end
 
