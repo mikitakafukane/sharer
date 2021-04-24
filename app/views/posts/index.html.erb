@@ -15,16 +15,9 @@
 
     <% @posts.each do |post| %>
       <div class="py-4 px-4 bg-light mt-3">
-        <%= post.content %>
-        <p class="text-right">
-          <%= post.created_at.strftime('%-m月%-d日 %-H:%M') %>
-          <%if post.user_id == current_user.id %>
-            <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "投稿「#{post.content}」を削除します。よろしいですか？" } %>
-          <% end %>
-        </p>
-        <hr>
-        <div id="like-btn-<%= post.id %>">
-          <%= render 'likes/like', post: post %>
+        <%= render 'posts/index', post: post %>
+        <div class="d-flex">
+          <p id="like-btn-<%= post.id %>"><%= render 'likes/like', post: post %></p>
           <%= "コメント数:#{post.comments.count}" %>
         </div>
         <div id="comments_area">
