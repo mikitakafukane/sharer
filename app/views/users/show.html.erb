@@ -1,7 +1,7 @@
 <h2 class="text-white"><%= @user.name %>のユーザーページ</h2>
   <div class="row">
     <div class="col-lg-3 bg-light py-3 px-3 mx-3">
-		  	<%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg", size: '300x300' %>
+	  <%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg", size: '300x300' %>
   		<div class="row px-3 mt-3">
 	  		<h4>連絡先情報</h4>
 				<% if current_user == @user %>
@@ -45,30 +45,30 @@
 			</div>
 		<% end %>
 		<div class="col-lg-3 bg-light py-3 px-3 mx-3 mt-3">
-			<div class="row px-3">
-				<h4>所属ルーム一覧</h4>
-				<% if current_user == @user %>
-				  <p class="ml-auto"><%= link_to "新規作成", rooms_path, class: "btn btn-warning ml-3" %></p>
-				<% end %>
-	  	</div>
-			<table class="table">
-				<tr>
-					<td>ルーム名</td>
-					<td></td>
-				</tr>
-				<% @rooms.each do |room| %>
-        <tr>
-          <td><%= room.name %></td>
-          <% if current_user == @user %>
-	          <td class="text-right">
-	            <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
-	            <%= link_to "参加", room_path(room), class: "btn btn-success" %>
-	          </td>
-          <% end %>
-        </tr>
+		  <div class="row px-3">
+		    <h4>所属ルーム一覧</h4>
+			<% if current_user == @user %>
+			  <p class="ml-auto"><%= link_to "新規作成", rooms_path, class: "btn btn-warning ml-3" %></p>
+			<% end %>
+	  	  </div>
+		  <table class="table">
+		    <tr>
+			  <td>ルーム名</td>
+			  <td></td>
+			</tr>
+		    <% @rooms.each do |room| %>
+	            <tr>
+	              <td><%= room.name %></td>
+	              <% if current_user == @user %>
+		            <td class="text-right">
+		              <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
+		              <%= link_to "参加", room_path(room), class: "btn btn-success" %>
+		            </td>
+	              <% end %>
+	            </tr>
 	    	<% end %>
-			</table>
-	   </div>
+		  </table>
+	    </div>
 
 		<div class="col-lg-4 bg-light py-3 px-3 mr-3 mt-3">
 			<h4>投稿・いいね・コメント一覧</h4>

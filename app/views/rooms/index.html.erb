@@ -13,14 +13,14 @@
           <th></td>
         </tr>
         <% @rooms.each do |room| %>
-        <tr>
-          <td><%= room.name %></td>
-          <td>
-            <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
-            <%= link_to "詳細", room_path(room), class: "btn btn-warning" %>
-          </td>
-        </tr>
-      <%  end %>
+            <tr>
+              <td><%= room.name %></td>
+              <td>
+                <%= link_to "編集", edit_room_path(room), class: "btn btn-primary" %>
+                <%= link_to "詳細", room_path(room), class: "btn btn-warning" %>
+              </td>
+            </tr>
+        <% end %>
     </table>
   </div>
 </div>

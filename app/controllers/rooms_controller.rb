@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
   def index
     @room  = Room.new
     @rooms = Room.all.order(updated_at: :desc)
+    
   end
 
   def create

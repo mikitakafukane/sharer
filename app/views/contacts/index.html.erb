@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
+<h2 class="text-white mx-3">お問い合わせ一覧</h2>
+	<div class="bg-light py-4 px-4 mx-3">
+<%= link_to 'お問い合わせフォーム', new_contact_path, class: "btn btn-warning mb-3" %>
 
-<h1>お問い合わせ一覧</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>名前</th>
-      <th>メールアドレス</th>
-      <th>内容</th>
-      <th colspan="3"></th>
+      <th style="width:15%">名前</th>
+      <th style="width:20%">メールアドレス</th>
+      <th style="width:50%">内容</th>
+      <th style="width:25%"></th>
     </tr>
   </thead>
 
@@ -18,14 +18,14 @@
         <td><%= contact.name %></td>
         <td><%= contact.email %></td>
         <td><%= contact.content %></td>
-        <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to '詳細', contact, class: "btn btn-success" %>
+          <%= link_to '編集', edit_contact_path(contact), class: "btn btn-primary" %>
+          <%= link_to '削除', contact, method: :delete, data: { confirm: "お問い合わせ「#{contact.content}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'お問い合わせフォーム', new_contact_path %>
+</div>

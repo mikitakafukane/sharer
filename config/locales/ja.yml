@@ -6,15 +6,15 @@ ja:
 
           room:
             name: ルーム名
-            
+            user_ids: ユーザーの追加・除外
+
           task:
             title: タスク名
 
           event:
             title: イベント
-            
+
           contact:
             name:    名前
             email:   メールアドレス
             content: 内容
-            

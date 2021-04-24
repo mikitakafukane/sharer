@@ -1,19 +1,19 @@
-<p id="notice"><%= notice %></p>
+<h2 class="text-light text-center">お問い合わせ編集画面</h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @contact.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @contact.email %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @contact.content %>
-</p>
-
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<div class="col-lg-3 py-4 px-4 bg-light mx-auto">
+<table class="table border">
+  <tr class="field">
+    <td>名前</td>
+    <td><%= @contact.name %></td>
+  </tr>
+  <tr class="field">
+    <td>メールアドレス</td>
+    <td> <%= @contact.email %></td>
+  </tr>
+  <tr class="field">
+    <td>内容</td>
+    <td><%= @contact.content %></td>
+  </tr>
+</table>
+<%= link_to '戻る', contacts_path, class: "btn btn-primary mt-2" %>
+</div>
