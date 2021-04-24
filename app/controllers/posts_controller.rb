@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    flash[:success] = "投稿"
+    flash[:success] = "投稿しました"
     redirect_to request.referer
   end
 
