@@ -19,6 +19,7 @@
         <hr>
         <div id="like-btn-<%= post.id %>">
           <%= render 'likes/like', post: post %>
+          <%= "コメント数:#{post.comments.count}" %>
         </div>
         <div id="comments_area">
           <%= render 'comments/form', { post: post, comment: @comment } %>

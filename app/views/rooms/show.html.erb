@@ -50,7 +50,7 @@
               <%= comment.user.name %>
               <%= comment.created_at.strftime('%-m月%-d日 %-H:%M') %></br>
               <%= comment.content %>
-              <%= link_to "削除", post_comment_path(comment), method: :delete, data: { confirm: "コメント「#{comment.content}」を削除します。よろしいですか？" } %></td>
+              <%= link_to "削除", post_comment_path(comment), method: :delete, data: { confirm: "コメント「#{comment.content}」を削除します。よろしいですか？" } %>
             </li>
           </ul>
         <% end %>
