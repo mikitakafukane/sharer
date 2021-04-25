@@ -78,8 +78,8 @@ end
   )
 end
 
-Room.create!(name: 'A')
-Room.create!(name: 'B')
-Room.create!(name: 'C')
+# Room.create!(name: 'A')
+# Room.create!(name: 'B')
+# Room.create!(name: 'C')
 
 
