@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @rooms = @user.rooms
 
-    @task  = Task.find(params[:id])
+    # @task  = Task.find(pdarams[:id])
     @tasks = @user.tasks
 
     @posts         = @user.posts
