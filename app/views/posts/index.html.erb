@@ -14,16 +14,17 @@
 
 
     <% @posts.each do |post| %>
-      <div class="py-4 px-4 bg-light mt-3">
+      <div id="post_<%= post.id %>" class="py-4 px-4 bg-light mt-3">
         <%= render 'posts/index', post: post %>
-        <div class="d-flex">
+        <!--<div class="d-flex">-->
           <p id="like-btn-<%= post.id %>"><%= render 'likes/like', post: post %></p>
-          <p id="comments-count"><%= "コメント数:#{post.comments.count}" %></p>
-        </div>
-        <div>
+          <p class="comments-count"><%= "コメント数:#{post.comments.count}" %></p>
+        <!--</div>-->
+        <!--<div>-->
           <p><%= render 'comments/form', { post: post, comment: @comment } %></p>
-          <p id="comments_area"><%= render 'comments/index', post: post %></p>
-        </div>
+          <p class="comments_area"><%= render 'comments/index', post: post %></p>
+
+        <!--</div>-->
       </div>
     <% end %>
 

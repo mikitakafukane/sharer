@@ -5,7 +5,7 @@
 　　<% @room.users.each do |user| %>
 　　<hr>
       <p><%= link_to user.name, user_path(user) %></br>
-      [最終ログイン]<%= user.current_sign_in_at.strftime('%-m月%-d日 %-H:%M') %>
+      [最終ログイン]<= user.current_sign_in_at&.strftime('%-m月%-d日 %-H:%M') %>
       <%= render 'tasks/chart', tasks: user.tasks, user: user  %>
       </p>
     <% end %>
