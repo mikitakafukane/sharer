@@ -25,7 +25,7 @@
         <tr class="info">
           <th><%= attachment_image_tag user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></th>
           <th><%=link_to user.name, user_path(user) %></th>
-          <th><%= user.current_sign_in_at.strftime('%-m月%-d日 %-H時%M分') %></th>
+          <th><%= user.current_sign_in_at&.strftime('%-m月%-d日 %-H時%M分') %></th>
           <th><%= user.email %></th>
           <th><%= user.belonging %></th>
         </tr>

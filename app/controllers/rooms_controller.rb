@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-# layout 'room', except: [:index, :new]
+  # layout 'room', except: [:index, :new]
 
   def index
     @room  = Room.new
@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room     = Room.find(params[:id])
+    @room = Room.find(params[:id])
 
     @post     = Post.new
     @posts    = Post.where(user_id: @room.users.ids)
@@ -45,8 +45,8 @@ class RoomsController < ApplicationController
   end
 
   private
-  def room_params
-    params.require(:room).permit(:name, user_ids: [] )
-  end
 
+  def room_params
+    params.require(:room).permit(:name, user_ids: [])
+  end
 end

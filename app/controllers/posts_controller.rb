@@ -6,13 +6,13 @@ class PostsController < ApplicationController
     # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(5)
     @post  = Post.new
     @q     = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
-               .where(user_id: current_user.id)
-               .order("created_at DESC")
-               .page(params[:page])
-               .per(5)
-    @comment  = Comment.new
-    @comments = @post.comments
+    @posts = @q.result(distinct: true).
+      where(user_id: current_user.id).
+      order("created_at DESC").
+      page(params[:page]).
+      per(5)
+    @comment = Comment.new
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   def create
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
                .order("created_at DESC")
                .page(params[:page])
                .per(5)
-    @comment  = Comment.new
+    @comment = Comment.new
 
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -33,9 +33,8 @@ class PostsController < ApplicationController
   def show
     @post     = Post.find(params[:id])
     @comment  = Comment.new
-    @comments = @post.comments
+    @comments = @post.comments.order(created_at: :desc)
   end
-
 
   def destroy
     @post = Post.find(params[:id])
@@ -45,6 +44,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:content)
   end
