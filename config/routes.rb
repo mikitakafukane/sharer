@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post '/tasks/:id/done' => 'tasks#done', as: 'done'
   resources :events, only: [:index, :create, :edit, :update, :destroy]
   resources :rooms, only: [:index, :create, :show, :edit, :update]
-  resources :contacts
+  resources :contacts, only: [:new, :create]
 
   get '/homes/about', to: 'homes#about'
 

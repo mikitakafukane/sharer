@@ -10,14 +10,13 @@ class User < ApplicationRecord
   has_many :belongings
   has_many :chats
   has_many :rooms, through: :belongings
-
   has_many :posts
   has_many :likes
   has_many :like_posts, through: :likes, source: :post
   has_many :comments
   has_many :comment_posts, through: :comments, source: :post
-
   has_many :tasks
+  has_many :contacts
 
   attachment :image
 
@@ -29,7 +28,7 @@ class User < ApplicationRecord
       user.current_sign_in_at = Time.now
     end
   end
-  
+
   def after_confirmation
     ThanksMailer.send_confirm_to_user(self).deliver
   end
