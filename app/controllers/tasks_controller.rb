@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     @q     = Task.ransack(params[:q])
     @tasks = @q.result(distinct: true)
                .where(user_id: current_user.id)
-    @task = Task.new(task_params)
+    @task  = Task.new(task_params)
     if @task.save
       flash[:success] = "タスクを登録しました"
       redirect_to request.referer
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      flash[:success] = "タスクを登録しました"
+      flash[:success] = "タスクを更新しました"
       redirect_to tasks_path
     else
       render :edit
@@ -50,11 +50,12 @@ class TasksController < ApplicationController
     @tasks = Task.all.includes(:user)
     @task  = Task.find(params[:id])
     @task.update(status: "完了")
+    # redirect_to request.referer
   end
 
   private
+
   def task_params
     params.require(:task).permit(:title, :description, :status).merge(user_id: current_user.id)
   end
-
 end

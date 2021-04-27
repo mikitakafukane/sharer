@@ -11,14 +11,12 @@ class UsersController < ApplicationController
   def show
     @user  = User.find(params[:id])
     @rooms = @user.rooms
-
-    # @task  = Task.find(pdarams[:id])
     @tasks = @user.tasks
 
     @posts         = @user.posts
     @like_posts    = @user.like_posts
     @comment_posts = @user.comment_posts
-    
+
     @liked_posts     = Like.where(post_id: @posts.pluck(:id))
     @commented_posts = Comment.where(post_id: @posts.pluck(:id))
 
@@ -46,5 +44,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :image, :email, :belonging)
   end
-
 end
