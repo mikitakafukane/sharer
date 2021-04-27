@@ -35,7 +35,7 @@ User.create!(
   name:       "チャ　タン",
   email:      "chatan@test.com",
   password:   "testtest",
-  belonging:  "沖縄",
+  belonging:  "202102",
   current_sign_in_at: Time.now
   )
   
@@ -48,10 +48,10 @@ User.create!(
   )
   
 User.create!(
-  name:       "野崎　一輝",
+  name:       "フェニックス　一輝",
   email:      "nozaki@test.com",
   password:   "testtest",
-  belonging:  "素人",
+  belonging:  "202102",
   current_sign_in_at: Time.now
   )
   
@@ -59,7 +59,7 @@ User.create!(
   name:       "サヨ　ティン",
   email:      "sayothin@test.com",
   password:   "testtest",
-  belonging:  "沖縄",
+  belonging:  "202102",
   current_sign_in_at: Time.now
   )
   
