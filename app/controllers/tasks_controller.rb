@@ -50,6 +50,7 @@ class TasksController < ApplicationController
     @tasks = Task.all.includes(:user)
     @task  = Task.find(params[:id])
     @task.update(status: "完了")
+    redirect_to request.referer
   end
 
   private
