@@ -22,8 +22,9 @@ class RoomsController < ApplicationController
 
     @post  = Post.new
     @q     = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).where(user_id: @room.users.ids).order(created_at: :desc)
-    # @posts = Post.where(user_id: @room.users.ids).order(created_at: :desc)
+    @posts = @q.result(distinct: true)
+               .where(user_id: @room.users.ids)
+               .order(created_at: :desc)
 
     @chat  = Chat.new(room_id: @room.id)
     @chats = @room.chats.order(created_at: :desc)

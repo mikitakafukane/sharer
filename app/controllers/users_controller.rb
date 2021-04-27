@@ -21,8 +21,8 @@ class UsersController < ApplicationController
     @commented_posts = Comment.where(post_id: @posts.pluck(:id))
 
     @chat_rooms = current_user.belongings.pluck(:room_id)
-    @chats      = Chat.where(room_id: @chat_rooms).
-      order("created_at DESC")
+    @chats      = Chat.where(room_id: @chat_rooms)
+                      .order("created_at DESC")
   end
 
   def edit

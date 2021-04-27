@@ -2,8 +2,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # @posts = Post.order("created_at DESC")
-    # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(5)
     @post  = Post.new
     @q     = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
