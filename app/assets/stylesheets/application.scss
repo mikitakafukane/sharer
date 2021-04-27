@@ -19,11 +19,11 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-// ----------background color------------
+// ----------基本の背景色------------
 .bg-gradient {
   background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
-// ----------background color------------
+// ----------基本の背景色------------
 
 // ----------footer固定------------
 body,
@@ -31,7 +31,6 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
 }
 
 footer {
@@ -49,3 +48,4 @@ footer {
   color: #EEEEEE;
 }
 //--------文字の色を白くする-------
+
