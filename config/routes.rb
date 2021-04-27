@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :create, :show, :edit, :update]
   resources :contacts
 
+  get '/homes/about', to: 'homes#about'
+
   root 'homes#top'
 end

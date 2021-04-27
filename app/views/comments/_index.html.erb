@@ -1,5 +1,5 @@
 <!-- コメント内容(1,2件目) ------------------------------------------------------------------>
-<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
+<h6 class="more" data-toggle="collapse" data-target="#collapseExample<%= post.id %>" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
 <% post.comments.first(2).each do |comment| %>
   <ul class="media-list">
     <li class="media">
@@ -12,7 +12,7 @@
   </ul>
 <% end %>
 <!-- コメント内容(3件目以降) ------------------------------------------------------------------>
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="collapseExample<%= post.id %>">
   <% post.comments.offset(2).each do |comment| %>
     <ul class="media-list">
       <li class="media">
