@@ -3,16 +3,14 @@ class UsersController < ApplicationController
 
   def index
     @q     = User.ransack(params[:q])
-    @users = @q.result(distinct: true).
-      page(params[:page]).
-      per(8)
+    @users = @q.result(distinct: true)
+               .page(params[:page])
+               .per(8)
   end
 
   def show
     @user  = User.find(params[:id])
     @rooms = @user.rooms
-
-    # @task  = Task.find(pdarams[:id])
     @tasks = @user.tasks
 
     @posts         = @user.posts
