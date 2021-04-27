@@ -1,9 +1,12 @@
+# Sharer
+
 ![linkedin_banner_image_2](https://user-images.githubusercontent.com/77489600/116325908-3ce36780-a7fe-11eb-82c1-1e0b785fbc32.png)
+
 ## サイト概要
 リモート学習の時に「勉強に詰まってモチベーションが上がらない...」「皆は順調に進んでるのかな？」なんて思ったことはありませんか？<br>
 sharerは他の人の進捗状況がわかったり情報共有が出来る、自分と仲間の勉強をサポートするサービスです。
 
-### URL
+## URL
 https://sharer.tokyo/
 <br>【ゲストログイン】ボタンからテストユーザーとしてログインできます。
 
@@ -40,7 +43,7 @@ https://docs.google.com/spreadsheets/d/1Fr2HHUrd4QDtPYW2ZQbFpFwQE80ldvnCzleo0k7E
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-- 
+-
 ## 使用素材
 - Hatchful(ロゴ作成)
 - https://hatchful.shopify.com/ja/
