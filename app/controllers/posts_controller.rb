@@ -10,7 +10,7 @@ class PostsController < ApplicationController
                .page(params[:page])
                .per(5)
     @comment  =  Comment.new
-    @comments = @post.comments.order(created_at: :desc)
+    @comments = @post.comments
   end
 
   def create
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post.save
     flash[:success] = "投稿しました"
     redirect_to request.referer
-    
+
     @comment = Comment.new
   end
 
