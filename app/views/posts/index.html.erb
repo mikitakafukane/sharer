@@ -25,7 +25,7 @@
         </div>
         <%= render 'comments/form', { post: post, comment: @comment } %>
         <div id="post_comment<%= post.id %>" >
-          <%= render 'comments/index', post: post %>
+          <%= render 'comments/index', { post: post, comment: @comment }  %>
         </div>
       </div>
     <% end %>

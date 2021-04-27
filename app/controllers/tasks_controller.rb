@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      flash[:success] = "タスクを登録しました"
+      flash[:success] = "タスクを更新しました"
       redirect_to tasks_path
     else
       render :edit
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
     @tasks = Task.all.includes(:user)
     @task  = Task.find(params[:id])
     @task.update(status: "完了")
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   private
