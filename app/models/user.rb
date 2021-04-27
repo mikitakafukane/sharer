@@ -29,4 +29,8 @@ class User < ApplicationRecord
       user.current_sign_in_at = Time.now
     end
   end
+  
+  def after_confirmation
+    ThanksMailer.send_confirm_to_user(self).deliver
+  end
 end
