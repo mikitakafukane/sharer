@@ -19,12 +19,11 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-
-    @post  = Post.new
-    @q     = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
-               .where(user_id: @room.users.ids)
-               .order(created_at: :desc)
+    @post = Post.new
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).
+      where(user_id: @room.users.ids).
+      order(created_at: :desc)
 
     @chat  = Chat.new(room_id: @room.id)
     @chats = @room.chats.order(created_at: :desc)

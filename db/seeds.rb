@@ -6,15 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# 4.times do |n|
-#   User.create!(
-#     name:       "テストユーザー#{n + 1}",
-#     email:      "user#{n + 1}@test.com",
-#     password:   "usertest",
-#     belonging:  "20210#{n + 1}"
-#   )
-# end
-
 User.create!(
   name:       "テストユーザー",
   email:      "test@test.com",
@@ -77,9 +68,3 @@ end
     status: "未完了"
   )
 end
-
-# Room.create!(name: 'A')
-# Room.create!(name: 'B')
-# Room.create!(name: 'C')
-
-

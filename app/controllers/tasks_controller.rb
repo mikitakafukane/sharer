@@ -4,8 +4,8 @@ class TasksController < ApplicationController
   def index
     @task  = Task.new
     @q     = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
-               .where(user_id: current_user.id)
+    @tasks = @q.result(distinct: true).
+      where(user_id: current_user.id)
   end
 
   def new
@@ -14,8 +14,8 @@ class TasksController < ApplicationController
 
   def create
     @q     = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
-               .where(user_id: current_user.id)
+    @tasks = @q.result(distinct: true).
+      where(user_id: current_user.id)
     @task  = Task.new(task_params)
     if @task.save
       flash[:success] = "タスクを登録しました"
@@ -50,7 +50,6 @@ class TasksController < ApplicationController
     @tasks = Task.all.includes(:user)
     @task  = Task.find(params[:id])
     @task.update(status: "完了")
-    # redirect_to request.referer
   end
 
   private
