@@ -5,5 +5,4 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     get tasks_index_url
     assert_response :success
   end
-
 end
