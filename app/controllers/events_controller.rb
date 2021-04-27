@@ -5,8 +5,8 @@ class EventsController < ApplicationController
     @event = Event.new
     @events = Event.all
     @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true).
-      where(user_id: current_user.id)
+    @tasks = @q.result(distinct: true)
+              .where(user_id: current_user.id)
   end
 
   def create

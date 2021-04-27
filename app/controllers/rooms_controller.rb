@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  # layout 'room', except: [:index, :new]
 
   def index
     @room  = Room.new
@@ -21,14 +20,14 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
 
-    @post     = Post.new
-    @posts    = Post.where(user_id: @room.users.ids)
+    @post  = Post.new
+    @posts = Post.where(user_id: @room.users.ids).order(created_at: :desc)
 
-    @chat     = Chat.new(room_id: @room.id)
-    @chats    = @room.chats
+    @chat  = Chat.new(room_id: @room.id)
+    @chats = @room.chats.order(created_at: :desc)
 
     @comment  = Comment.new
-    @comments = @post.comments
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   def edit
