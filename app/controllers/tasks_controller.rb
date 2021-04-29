@@ -48,7 +48,6 @@ class TasksController < ApplicationController
 
   def done
     @tasks = Task.where(user_id: current_user.id)
-    # @tasks = Task.all.includes(:user)
     @task  = Task.find(params[:id])
     @task.update(status: "完了")
   end
