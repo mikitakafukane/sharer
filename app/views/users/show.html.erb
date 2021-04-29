@@ -88,21 +88,21 @@
 			<% end %>
 		</div>
 
-		<div class="col-lg-4 bg-light py-3 px-3 mt-3">
-			<h4>いいね・コメントされた投稿一覧</h4>
-			<% @liked_posts.each do |liked_post| %>
-			  <% unless liked_post.user == current_user %>
-			  <hr>
-				  <%= liked_post.user.name %>さんが<%=link_to liked_post.post.content, post_path(liked_post.post_id) %>にいいねしました！
-				  [<%= liked_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			  <% end %>
-			<% end %>
-			<% @commented_posts.each do |commented_post| %>
-			  <% unless commented_post.user == current_user %>
-			  <hr>
-				  <%= commented_post.user.name %>さんが<%=link_to commented_post.post.content, post_path(commented_post.post_id) %>にコメントしました！
-				  [<%= commented_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			  <% end %>
-			<% end %>
-		</div>
-  </div>
+		<!--<div class="col-lg-4 bg-light py-3 px-3 mt-3">-->
+		<!--	<h4>いいね・コメントされた投稿一覧</h4>-->
+		<!--	< @liked_posts.each do |liked_post| %>-->
+		<!--	  < unless liked_post.user == current_user %>-->
+		<!--	  <hr>-->
+		<!--		  <= liked_post.user.name %>さんが<=link_to liked_post.post.content, post_path(liked_post.post_id) %>にいいねしました！-->
+		<!--		  [<= liked_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]-->
+		<!--	  < end %>-->
+		<!--	< end %>-->
+		<!--	< @commented_posts.each do |commented_post| %>-->
+		<!--	  < unless commented_post.user == current_user %>-->
+		<!--	  <hr>-->
+		<!--		  <= commented_post.user.name %>さんが<=link_to commented_post.post.content, post_path(commented_post.post_id) %>にコメントしました！-->
+		<!--		  [<= commented_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]-->
+		<!--	  < end %>-->
+		<!--	< end %>-->
+		<!--</div>-->
+  <!--</div>-->
