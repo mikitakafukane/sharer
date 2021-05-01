@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     @like_posts    = @user.like_posts
     @comment_posts = @user.comment_posts
 
-    # @liked_posts     = Like.where(post_id: @posts.pluck(:id))
-    # @commented_posts = Comment.where(post_id: @posts.pluck(:id))
+    @liked_posts     = Like.where(post_id: @posts.pluck(:id))
+    @commented_posts = Comment.where(post_id: @posts.pluck(:id))
 
     @chat_rooms = current_user.belongings.pluck(:room_id)
     @chats      = Chat.where(room_id: @chat_rooms).
