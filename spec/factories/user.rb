@@ -7,10 +7,4 @@ FactoryBot.define do
     belonging { Faker::Lorem.characters(number: 5) }
     # association :user
   end
-  
-  factory :room do
-    name { Faker::Lorem.characters(number:10) }
-    # body { Faker::Lorem.characters(number:30) }
-    # association :user
-  end
 end
