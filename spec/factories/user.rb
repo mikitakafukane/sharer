@@ -5,6 +5,5 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
     belonging { Faker::Lorem.characters(number: 5) }
-    user
   end
 end
