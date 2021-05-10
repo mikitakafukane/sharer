@@ -83,17 +83,17 @@ RSpec.describe User, type: :model do
         expect(test_user.errors[:password]).to include("を入力してください")
       end
       
+      it '6文字以上であること' do
+        test_user.password = Faker::Lorem.characters(number: 5)
+        is_expected.to eq false
+      end
+      
       # it '6文字以上であること' do
       #   test_user.password = Faker::Lorem.characters(number: 6)
       #   is_expected.to eq true
       # end
       
-      it '5文字以下では登録できない' do
-        test_user.password = Faker::Lorem.characters(number: 5)
-        is_expected.to eq false
-      end
-      
-      it '5文字以下の場合はエラーが出る' do
+      it '6文字未満の場合はエラーが出る' do
         test_user.password = Faker::Lorem.characters(number: 5)
         test_user.valid?
         expect(test_user.errors[:password]).to include("は6文字以上で入力してください")
@@ -109,64 +109,87 @@ RSpec.describe User, type: :model do
   end
 
   describe "アソシエーションのテスト" do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
     
     context "Belongingモデルとの関係" do
+      let(:target) {:belongings}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:belongings).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Chatモデルとの関係" do
+      let(:target) {:chats}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:chats).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Commentモデルとの関係" do
+      let(:target) {:comments}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:comments).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
     
     context "comment_postsメソッドとの関係" do
+      let(:target) {:comment_posts}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:comment_posts).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Eventモデルとの関係" do
+      let(:target) {:events}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:events).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Likeモデルとの関係" do
+      let(:target) {:likes}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:likes).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
     
     context "like_postsメソッドとの関係" do
+      let(:target) {:like_posts}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:like_posts).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Postモデルとの関係" do
+      let(:target) {:posts}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:posts).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Roomモデルとの関係" do
+      let(:target) {:rooms}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:rooms).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
 
     context "Taskモデルとの関係" do
+      let(:target) {:tasks}
+      
       it "1:Nとなっている" do
-        expect(User.reflect_on_association(:tasks).macro).to eq :has_many
+        expect(association.macro).to eq :has_many
       end
     end
   end
