@@ -42,11 +42,6 @@ RSpec.describe User, type: :model do
       end
     end
     
-    context "Contactモデルとの関係" do
-      it "1:Nとなっている" do
-        expect(User.reflect_on_association(:contacts).macro).to eq :has_many
-      end
-    end
     
     context "Eventモデルとの関係" do
       it "1:Nとなっている" do

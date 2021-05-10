@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :comment_posts, through: :comments, source: :post
   has_many :tasks
+  has_many :events
 
   attachment :image
 
