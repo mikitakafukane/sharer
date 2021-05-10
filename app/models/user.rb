@@ -5,20 +5,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :timeoutable, :confirmable
 
-  validates :name, presence: true
-
   has_many :belongings
   has_many :chats
-  has_many :rooms, through: :belongings
-  has_many :posts
-  has_many :likes
-  has_many :like_posts, through: :likes, source: :post
+  has_many :events
   has_many :comments
   has_many :comment_posts, through: :comments, source: :post
+  has_many :likes
+  has_many :like_posts, through: :likes, source: :post
+  has_many :posts
+  has_many :rooms, through: :belongings
   has_many :tasks
 
   attachment :image
 
+  validates :name, presence: true
+  
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.name = "ゲスト"
