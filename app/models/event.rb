@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   validates :title, presence: true
 
+  belongs_to :user
+
   def start_time
     start_date
   end
