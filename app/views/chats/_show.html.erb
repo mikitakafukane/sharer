@@ -1,5 +1,5 @@
 <% chats.each do |chat| %>
-  <table>
+  <table class='message'>
     <tr>
       <td rowspan="2"><%= attachment_image_tag chat.user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
       <td>
