@@ -4,21 +4,21 @@ class PostsController < ApplicationController
   def index
     @post  = Post.new
     @q     = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).
-      where(user_id: current_user.id).
-      order(created_at: :desc).
-      page(params[:page]).
-      per(5)
-    @comment = Comment.new
+    @posts = @q.result(distinct: true)
+               .where(user_id: current_user.id)
+               .order(created_at: :desc)
+               .page(params[:page])
+               .per(5)
+    @comment  = Comment.new
     @comments = @post.comments
   end
 
   def create
     @q     = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).
-      order(created_at: :desc).
-      page(params[:page]).
-      per(5)
+    @posts = @q.result(distinct: true)
+               .order(created_at: :desc)
+               .page(params[:page])
+               .per(5)
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
