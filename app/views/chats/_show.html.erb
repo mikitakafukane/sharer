@@ -6,7 +6,7 @@
         <b><%= chat.user.name %></b>
         <%= chat.created_at.strftime('%-m月%-d日 %-H:%M') %>
         <% if chat.user == current_user %>
-          <%= link_to "削除", chat, method: :delete, data: { confirm: "チャット「#{chat.content}」を削除します。よろしいですか？" } %></td>
+          <%= link_to "削除", chat, method: :delete, remote: true %></td>
         <% end %>
       </td>
     </tr>
