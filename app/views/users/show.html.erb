@@ -29,6 +29,9 @@
 		<div class="col-lg-8 bg-light py-3">
 		  <h4>所属グループチャット状況</h4>
   	  <%= render 'chats/show', chats: @chats, user: @user %>
+  	  <div class="mt-3">
+				<%= paginate @chats, param_name: 'chat_page' %>
+			</div>
 		</div>
 		<% else %>
 		  <div class="col-lg-3 bg-light py-3 mr-3">
@@ -70,39 +73,87 @@
 	    </div>
 
 		<div class="col-lg-4 bg-light py-3 px-3 mr-3 mt-3">
-			<h4>投稿・いいね・コメント一覧</h4>
-			<% @posts.each do |post| %>
-			  <hr>
-			  <%= @user.name %>さんが<%=link_to post.content, post_path(post.id) %>を投稿しました！
-			  [<%= post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			<% end %>
-			<% @like_posts.each do |like_post| %>
-			  <hr>
-			  <%= @user.name %>さんが<%=link_to like_post.content, post_path(like_post.id) %>にいいねしました！
-			  [<%= like_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			<% end %>
-			<% @comment_posts.each do |comment_post| %>
-			  <hr>
-			  <%= @user.name %>さんが<%=link_to comment_post.content, post_path(comment_post.id) %>にコメントしました！
-			  [<%= comment_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			<% end %>
+			<h4><%= @user.name %>の投稿・いいね・コメント一覧</h4>
+				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<li class="nav-item" role="presentation">
+				    <a class="nav-link active" id="pills-post-tab" data-bs-toggle="pill" href="#pills-post" role="tab" aria-controls="pills-post" aria-selected="true">投稿</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="pills-like-tab" data-bs-toggle="pill" href="#pills-like" role="tab" aria-controls="pills-like" aria-selected="false">いいね</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="pills-comment-tab" data-bs-toggle="pill" href="#pills-comment" role="tab" aria-controls="pills-comment" aria-selected="false">コメント</a>
+				  </li>
+				</ul>
+				<div class="tab-content" id="pills-tabContent">
+				  <div class="tab-pane fade show active" id="pills-post" role="tabpanel" aria-labelledby="pills-post-tab">
+				  	<% @posts.each do |post| %>
+						  <hr>
+						  <%= @user.name %>さんが<%=link_to post.content, post_path(post.id) %>を投稿しました！
+						  [<%= post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
+						<% end %>
+						<div class="mt-3">
+							<%= paginate @posts, param_name: 'post_page' %>
+						</div>
+				  </div>
+				  <div class="tab-pane fade" id="pills-like" role="tabpanel" aria-labelledby="pills-like-tab">
+				  	<% @like_posts.each do |like_post| %>
+						  <hr>
+						  <%= @user.name %>さんが<%=link_to like_post.content, post_path(like_post.id) %>にいいねしました！
+						  [<%= like_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
+						<% end %>
+						<div class="mt-3">
+							<%= paginate @like_posts, param_name: 'like_page' %>
+						</div>
+				  </div>
+				  <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
+				  	<% @comment_posts.each do |comment_post| %>
+						  <hr>
+						  <%= @user.name %>さんが<%=link_to comment_post.content, post_path(comment_post.id) %>にコメントしました！
+						  [<%= comment_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
+						<% end %>
+						<div class="mt-3">
+							<%= paginate @comment_posts, param_name: 'comment_page' %>
+						</div>
+				  </div>
+				</div>
 		</div>
 
 		<div class="col-lg-4 bg-light py-3 px-3 mt-3">
-			<h4>いいね・コメントされた投稿一覧</h4>
-			<% @liked_posts.each do |liked_post| %>
-			  <% unless liked_post.user == current_user %>
-			  <hr>
-				  <%= liked_post.user.name %>さんが<%=link_to liked_post.post.content, post_path(liked_post.post_id) %>にいいねしました！
-				  [<%= liked_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			  <% end %>
-			<% end %>
-			<% @commented_posts.each do |commented_post| %>
-			  <% unless commented_post.user == current_user %>
-			  <hr>
-				  <%= commented_post.user.name %>さんが<%=link_to commented_post.post.content, post_path(commented_post.post_id) %>にコメントしました！
-				  [<%= commented_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
-			  <% end %>
-			<% end %>
+			<h4><%= @user.name %>のいいね・コメントされた投稿一覧</h4>
+			<ul class="nav nav-pills mb-3" id="liked-tab" role="tablist">
+			  <li class="nav-item" role="presentation">
+			    <a class="nav-link active" id="pills-liked-tab" data-bs-toggle="pill" href="#pills-liked" role="tab" aria-controls="pills-liked" aria-selected="true">いいね</a>
+			  </li>
+			  <li class="nav-item" role="presentation">
+			    <a class="nav-link" id="pills-commented-tab" data-bs-toggle="pill" href="#pills-commented" role="tab" aria-controls="pills-commented" aria-selected="false">コメント</a>
+			  </li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+			  <div class="tab-pane fade show active" id="pills-liked" role="tabpanel" aria-labelledby="pills-liked-tab">
+			  	<% @liked_posts.each do |liked_post| %>
+					  <% unless liked_post.user == current_user %>
+					  <hr>
+						  <%= liked_post.user.name %>さんが<%=link_to liked_post.post.content, post_path(liked_post.post_id) %>にいいねしました！
+						  [<%= liked_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
+					  <% end %>
+					<% end %>
+					<div class="mt-3">
+							<%= paginate @comment_posts, param_name: 'liked_page' %>
+					</div>
+			  </div>
+			  <div class="tab-pane fade" id="pills-commented" role="tabpanel" aria-labelledby="pills-commented-tab">
+			  	<% @commented_posts.each do |commented_post| %>
+					  <% unless commented_post.user == current_user %>
+					  <hr>
+						  <%= commented_post.user.name %>さんが<%=link_to commented_post.post.content, post_path(commented_post.post_id) %>にコメントしました！
+						  [<%= commented_post.created_at.strftime('%-m月%-d日 %-H:%M') %>]
+					  <% end %>
+					<% end %>
+					<div class="mt-3">
+							<%= paginate @comment_posts, param_name: 'commented_page' %>
+					</div>
+			  </div>
+			</div>
 		</div>
   </div>

@@ -6,6 +6,8 @@ class ChatsController < ApplicationController
     @chat.save
     @chats = Chat.where(room_id: @chat.room_id)
                  .order(created_at: :desc)
+                 .page(params[:chat_page])
+                 .per(10)
   end
 
   def destroy
@@ -13,6 +15,8 @@ class ChatsController < ApplicationController
     @chat.destroy
     @chats = Chat.where(room_id: @chat.room_id)
                  .order(created_at: :desc)
+                 .page(params[:chat_page])
+                 .per(10)
   end
 
   private
