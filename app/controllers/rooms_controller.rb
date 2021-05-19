@@ -18,15 +18,19 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
-    @post = Post.new
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).
-      where(user_id: @room.users.ids).
-      order(created_at: :desc)
+    @room  = Room.find(params[:id])
+    @post  = Post.new
+    @q     = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+               .where(user_id: @room.users.ids)
+               .order(created_at: :desc)
+               .page(params[:post_page])
+               .per(5)
 
     @chat  = Chat.new(room_id: @room.id)
     @chats = @room.chats.order(created_at: :desc)
+                        .page(params[:chat_page])
+                        .per(10)
 
     @comment  = Comment.new
     @comments = @post.comments.order(created_at: :desc)
