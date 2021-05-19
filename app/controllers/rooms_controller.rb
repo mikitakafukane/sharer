@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
     @room  = Room.find(params[:id])
     @post  = Post.new
     @q     = Post.ransack(params[:q])
+
     @posts = @q.result(distinct: true)
                .where(user_id: @room.users.ids)
                .order(created_at: :desc)
