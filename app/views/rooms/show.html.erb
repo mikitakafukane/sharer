@@ -55,6 +55,9 @@
       <div id="chat_show">
   	    <%= render 'chats/show', chats: @chats %>
       </div>
+      <div class="mt-3">
+      	<%= paginate @chats, param_name: 'chat_page' %>
+      </div>
   	</div>
 	</div>
 </div>
