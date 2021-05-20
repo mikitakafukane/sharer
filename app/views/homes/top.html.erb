@@ -1,10 +1,10 @@
 <div class="row bg-white">
-  <div class="col-lg-6">
-    <%= image_tag asset_path('logo.png'), size: '800x800' %>
+  <div class="col-md-6">
+    <%= image_tag asset_path('logo.png'), size: '800x800', class: "img-fluid" %>
   </div>
-  <div class="col-lg-6 bg-light d-flex align-items-center">
+  <div class="col-md-6 bg-light d-flex align-items-center" >
     <div class="mx-auto">
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column m-5">
       <h1>Shererしよ？</h1>
       <p>Shererは学習のモチベーションを上げるための進捗共有サイトです。</p>
       <p><%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %></p>

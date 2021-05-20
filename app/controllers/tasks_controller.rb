@@ -4,8 +4,10 @@ class TasksController < ApplicationController
   def index
     @task  = Task.new
     @q     = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true).
-      where(user_id: current_user.id)
+    @tasks = @q.result(distinct: true)
+               .where(user_id: current_user.id)
+               .order(created_at: :desc)
+
   end
 
   def new
@@ -14,8 +16,10 @@ class TasksController < ApplicationController
 
   def create
     @q     = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true).
-      where(user_id: current_user.id)
+    @tasks = @q.result(distinct: true)
+               .where(user_id: current_user.id)
+               .order(created_at: :desc)
+
     @task  = Task.new(task_params)
     if @task.save
       flash[:success] = "タスクを登録しました"

@@ -1,10 +1,10 @@
 <header>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-md">
     <div class="container-fluid">
       <%= image_tag asset_path('logo_transparent2.png'), size: '35x35' %>
       <h3><%= link_to "Sharer", root_path %></h3>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon text-white">□</span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <div class="flash ml-auto">
@@ -14,9 +14,9 @@
             </div>
           <% end %>
         </div>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
           <% if user_signed_in? %>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown ml-auto">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               個人メニュー
             </a>
@@ -27,16 +27,16 @@
               <a class="dropdown-item"><%= link_to "ユーザー", users_path, class: "dropdown-item"  %></a>
             </div>
           </li>
-            <li class="nav-item"><%= link_to "ルーム", rooms_path, class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "お問い合わせ", new_contact_path, class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "ルーム", rooms_path, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "マイページ", user_path(current_user), class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "お問い合わせ", new_contact_path, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"  %></li>
           <% else %>
-            <li class="nav-item"><%= link_to "About", homes_about_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "お問い合わせ", new_contact_path, class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link"  %></li>
-            <li class="nav-item"><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "About", homes_about_path, class: "nav-link" %></li>
+            <li class="nav-item ml-auto"><%= link_to "お問い合わせ", new_contact_path, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "新規登録", new_user_registration_path, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "ログイン", new_user_session_path, class: "nav-link"  %></li>
+            <li class="nav-item ml-auto"><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link"  %></li>
           <% end %>
         </ul>
       </div>
