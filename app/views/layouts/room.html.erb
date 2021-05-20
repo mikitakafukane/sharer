@@ -14,7 +14,7 @@
       <%= render "layouts/header" %>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-2">
+          <div class="col-md-2">
             <ul class="sidebar">
               <li class="sidebar-item list-unstyled"><%= link_to "掲示板", posts_path %></li>
               <li class="sidebar-item list-unstyled"><%= link_to "タスク", tasks_path %></li>
@@ -34,7 +34,7 @@
             </ul>
 
           </div>
-          <div class="col-lg-9 col-lg-offset-1">
+          <div class="col-md-9 col-md-offset-1">
             <%= render "layouts/flash" %>
             <%= yield %>
           </div>

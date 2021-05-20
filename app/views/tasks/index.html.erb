@@ -1,7 +1,7 @@
 <%= render "layouts/error_messages", resource: @task %>
 <div class="row">
-  <h2 class="col-lg-4 text-white">タスク一覧</h2>
-  <div class="col-lg-8 form-inline">
+  <h2 class="col-md-4 text-white">タスク一覧</h2>
+  <div class="col-md-8 form-inline">
     <%= search_form_for @q do |f| %>
       <%= f.search_field :title_cont, class: "form-control", placeholder: "タスク名で検索" %>
       <%= f.submit "検索", class: "btn btn-light" %>
@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-md-4">
     <div class="py-4 px-4 bg-light">
       <h4>タスク登録</h4>
       <%= render 'form', task: @task %>
@@ -22,7 +22,7 @@
 		  </div>
 	  </div>
 
-  <div class="col-lg-7 py-4 px-4 bg-light">
+  <div class="col-md-7 py-4 px-4 bg-light">
     <h4>タスク一覧</h4>
     <div id="task_tasks">
       <%= render 'task', tasks: @tasks %>
