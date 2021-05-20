@@ -10,19 +10,19 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <div class="py-4 px-4 bg-light">
+    <div class="p-4 bg-light">
       <h4>タスク登録</h4>
       <%= render 'form', task: @task %>
     </div>
 
-    <div class="bg-light py-3 px-4 mt-3">
+    <div class="bg-light p-4 mt-3">
 		  <h4>タスク進捗状況</h4>
 		  <div id="task_chart">
 		    <%= render 'chart_current', tasks: @tasks %>
 		  </div>
 	  </div>
 
-  <div class="col-md-7 py-4 px-4 bg-light">
+  <div class="col-md-7 p-4 bg-light m-3 m-md-0">
     <h4>タスク一覧</h4>
     <div id="task_tasks">
       <%= render 'task', tasks: @tasks %>
