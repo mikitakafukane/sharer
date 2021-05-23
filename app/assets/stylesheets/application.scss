@@ -43,3 +43,9 @@ body,
   color: #EEEEEE;
 }
 //--------文字の色を白くする-------
+
+@media screen and (max-width: 768px) {
+  .accordion-content {
+    display: none;
+  }
+}
