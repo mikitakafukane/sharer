@@ -1,6 +1,6 @@
   <div class="row">
-    <h2 class="col-md-4 text-white">ユーザー一覧</h2>
-    <div class="col-md-8 form-inline">
+    <h4 class="col-md-4 text-white">ユーザー一覧</h4>
+    <div class="col-md-8 mb-3 form-inline">
       <%= search_form_for @q do |f| %>
         <%= f.search_field :name_cont, class: "form-control", placeholder: "ユーザー名で検索" %>
         <%= f.submit "検索", class: "btn btn-light" %>
@@ -8,26 +8,26 @@
     </div>
   </div>
 
-  <div class="py-4 px-4 bg-light">
+  <div class="p-4 bg-light">
 
   <table class="table table-hover">
     <thead>
-      <tr class="info">
+      <tr>
         <th>アイコン画像</th>
         <th>氏名</th>
-        <th>最終ログイン</th>
-        <th>メールアドレス</th>
-        <th>所属</th>
+        <th class="accordion-content">最終ログイン</th>
+        <th class="accordion-content">メールアドレス</th>
+        <th class="accordion-content">所属</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <tr class="info">
-          <th><%= attachment_image_tag user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></th>
-          <th><%=link_to user.name, user_path(user) %></th>
-          <th><%= user.current_sign_in_at&.strftime('%-m月%-d日 %-H時%M分') %></th>
-          <th><%= user.email %></th>
-          <th><%= user.belonging %></th>
+        <tr>
+          <td><%= attachment_image_tag user, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50' %></td>
+          <td><%=link_to user.name, user_path(user) %></td>
+          <td class="accordion-content"><%= user.current_sign_in_at&.strftime('%-m月%-d日 %-H時%M分') %></td>
+          <td class="accordion-content"><%= user.email %></td>
+          <td class="accordion-content"><%= user.belonging %></td>
         </tr>
       <% end %>
     </tbody>

@@ -1,6 +1,6 @@
 <%= render "layouts/error_messages", resource: @event %>
 <h2 class="text-white">イベント編集</h2>
-	<div class="py-4 px-4 bg-light">
+	<div class="p-4 bg-light">
     <p><%= link_to "カレンダーに戻る", events_path, class: "btn btn-dark" %></p>
     <p><%=render 'form', event: @event %></p>
   </div>
