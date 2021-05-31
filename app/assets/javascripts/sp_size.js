@@ -1,4 +1,5 @@
 /*global jQuery $*/
+document.addEventListener("turbolinks:load", function(){
 jQuery(function ($) {
 
   $('.js-accordion-title').on('click', function () {
@@ -16,3 +17,4 @@ jQuery(function ($) {
   });
 
 });
+})
